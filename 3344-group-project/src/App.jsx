@@ -3,16 +3,21 @@
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
     <>
       <div>
         <Header />
-          
 
+        <div>
 
-        {/* <Footer /> */}
+          This is where all main sections go
+
+        </div>
+
+        <Footer />
       </div>
 
     </>
