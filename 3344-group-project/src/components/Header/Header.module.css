@@ -22,10 +22,16 @@
     padding-top: 20px;
     list-style: none;
     display: flex; /* default is row */
-    /* justify-content: center; */
     padding-bottom: 20px;
     margin: 0;
     padding-left: 0;
+}
+.navLinks img{
+    padding-top: 4px;
+    margin-inline: 4px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
 .navLinks select{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -36,7 +42,7 @@
     color: #fff;
     font-size: 1.25rem;
     cursor: pointer; 
-    width: 150px; /* width determined by content */
+    width: 138px; /* width determined by content */
     text-align: center;
     margin: 0 15px;
 }
@@ -44,6 +50,7 @@
     background-color: #004d13e5;
 }
 .navLinks li{
+    
     border: 2px solid;
     border-radius: 5px;
     padding: 5px;
@@ -53,10 +60,14 @@
     background-color: rgba(255, 255, 255, 0.2);
 }
 .navLinks a{
+    display: flex;
+    text-wrap-mode: nowrap;
     text-decoration: none;
     color: #fff;
     font-size: 1.25rem;
     margin-inline: 10px;
+    /* margin-top:10px; */
+    margin-top: 5px; /* only works when flex*/
 }
 @media screen and (max-width: 768px){
     .header h1{

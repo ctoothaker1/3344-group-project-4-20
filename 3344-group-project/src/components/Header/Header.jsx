@@ -20,10 +20,18 @@ const Header = () => {
               <select name="lunches" id="lunches">
                 <option value="" disabled selected>Lunches</option>
                 <option value="5-ingredient">5-Ingredient Meals</option>
-                <option value="one-pot">Sandwich Ideas</option>
-                <option value="easy">Soups</option>
+                <option value="sandwich">Sandwich Ideas</option>
+                <option value="soups">Soups</option>
               </select>
-              <li><a href="#about">About</a></li>
+              <select name="breakfasts" id="breakfasts">
+                <option value="" disabled selected>Breakfasts</option>
+                <option value="5-ingredient">5-Ingredient Meals</option>
+                <option value="sandwich">Sandwich Ideas</option>
+                <option value="soups">Soups</option>
+              </select>
+              <li><a href="">My Meals</a></li>
+              <li><img src="../../src/assets/search.png" alt="Search Icon" /></li>
+              {/*search icon source: <a href="https://www.flaticon.com/free-icons/magnifying-glass" title="magnifying glass icons">Magnifying glass icons created by chehuna - Flaticon</a>*/ }
 
           </ul>
         </nav>
