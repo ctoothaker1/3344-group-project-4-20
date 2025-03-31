@@ -10,6 +10,6 @@ html {
 }
 @media screen and (max-width: 375px){ /* increase font size for phone screens*/ 
   body{
-    font-size: 1.3em;
+    /* font-size: 1.3em; */
   }
 }
