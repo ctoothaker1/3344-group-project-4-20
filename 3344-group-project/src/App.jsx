@@ -4,19 +4,18 @@
 import './App.css'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-
+import Search from './components/Search/Search'
 function App() {
   return (
     <>
       <div>
         <Header />
-
-        <div>
-
-          This is where all main sections go
-
-        </div>
-
+        <main>
+          <Search />
+          {/* Brief paragraph about our site? */}
+          {/* Featured Recipes */}
+          {/*  */}
+        </main>
         <Footer />
       </div>
 

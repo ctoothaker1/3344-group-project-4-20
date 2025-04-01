@@ -11,9 +11,9 @@ const Header = () => {
       <div id='rightContainer'>
         <nav>
           <ul className={styles.navLinks}>
-              <select name="dinners" id="dinners">
-                <option value="" disabled selected>Dinners</option>
-                <option value="5-ingredient">5-Ingredient Dinners</option>
+              <select name="Search" id="search">
+                <option value="" disabled selected>Search</option>
+                <option value="filter">5-Ingredient Dinners</option>
                 <option value="one-pot">One-Pot Meals</option>
                 <option value="easy">Easy Meals</option>
               </select>
