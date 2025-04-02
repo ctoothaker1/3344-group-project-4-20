@@ -2,7 +2,7 @@ import React from "react";
 
 
 // api  INCOMPLETE
-const Edamam = () => {
+const ApiHandler = () => {
 
     const query = null;
     const baseUrl = import.meta.env.VITE_EDAMAM_BASEURL

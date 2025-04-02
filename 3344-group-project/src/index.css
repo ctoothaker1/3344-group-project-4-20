@@ -13,7 +13,8 @@ main{
   justify-content: center;
   
 }
-@media screen and (max-width: 375px){ /* increase font size for phone screens*/ 
+/* increase font size for phone screens*/ 
+@media screen and (max-width: 375px){ 
   body{
     /* font-size: 1.3em; */
   }

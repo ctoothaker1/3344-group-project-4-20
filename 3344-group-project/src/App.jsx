@@ -1,23 +1,27 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import { useState } from 'react'
+// import siteLogo from '/siteLogo.svg'  -- we should make a logo
 import './App.css'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
-import Search from './components/Search/Search'
+import Home from './Pages/Home.jsx'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import SearchResults from './Pages/Search.jsx'
+
+
 function App() {
   return (
     <>
-      <div>
-        <Header />
-        <main>
-          <Search />
-          {/* Brief paragraph about our site? */}
-          {/* Featured Recipes */}
-          {/*  */}
-        </main>
-        <Footer />
-      </div>
+      <Router>
+        <div className='App'>
+          <Header />
+          <Routes>
+            {/* Moved homepage elements to home file */}
+            <Route path='/' element={<Home />} />
+            <Route path="/search/:query" element={<SearchResults />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
 
     </>
   )
