@@ -6,8 +6,7 @@ import Footer from './components/Footer/Footer'
 import Home from './Pages/Home.jsx'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import SearchResults from './Pages/Search.jsx'
-
-
+import FirstSearch from './Pages/Search.jsx'
 function App() {
   return (
     <>
@@ -17,6 +16,7 @@ function App() {
           <Routes>
             {/* Moved homepage elements to home file */}
             <Route path='/' element={<Home />} />
+            <Route path='/search/' element={<FirstSearch />} />
             <Route path="/search/:query" element={<SearchResults />} />
           </Routes>
           <Footer />

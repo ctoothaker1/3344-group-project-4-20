@@ -4,10 +4,23 @@ import { useState } from 'react';
 import { useParams  } from 'react-router-dom';
 import Search from '../components/Search/Search';
 
+const FirstSearch = () => {
+  
+  return (
+    <div>
+      <h1>Search</h1>
+      <Search onSearchSubmit={(searchQuery) => window.location.href = `/search/${searchQuery}`} />
+    </div>
+  );
+
+}
+export default FirstSearch;
+
+
 const SearchResults = () => {
 
   const { query } = useParams();
-  const [searchQuery, setSearchQuery] = useState([]);
+  // const [searchQuery, setSearchQuery] = useState([]);
   
   
   useEffect(() => {
@@ -25,14 +38,13 @@ const SearchResults = () => {
     setResults(simulatedResults);}, [query]);
 
     //execute when search is performed
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      if (searchQuery.trim()) {
-        // redirect to /search/{query}
-        navigate(`/search/${searchQuery}`);
-      }
-    };
-
+    // const handleSubmit = (event) => {
+    //   event.preventDefault();
+    //   if (searchQuery.trim()) {
+    //     // redirect to /search/{query}
+    //     navigate(`/search/${searchQuery}`);
+    //   }
+    // };
 
   return (
       
@@ -54,4 +66,4 @@ const SearchResults = () => {
   );
 };
 
-export default SearchResults;
+export {SearchResults};
