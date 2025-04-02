@@ -17,10 +17,11 @@ function Home() {
     }
   }
 
-  return (
+  return ( // HOME PAGE LAYOUT
     <>
         <main>
-        <Search onSearchSubmit={handleSearchSubmit}/>
+          <h1>this is the homepage</h1>
+        <Search onSearchSubmit={handleSearchSubmit}/> {/* search component*/}
           {/* Brief paragraph about our site? */}
           {/* Featured Recipes */}
           {/*  */}
