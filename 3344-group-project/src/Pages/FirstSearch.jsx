@@ -1,6 +1,7 @@
 // this file contains a blank search page layout
 import React from 'react';
 import Search from '../components/Search/Search';
+import { useNavigate } from 'react-router-dom';
 
 const FirstSearch = () => {
   
