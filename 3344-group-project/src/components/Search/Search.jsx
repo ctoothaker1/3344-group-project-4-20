@@ -16,7 +16,7 @@ const Search = ({ onSearchSubmit }) => {
     const handleSubmit = (event) => {
     event.preventDefault();
     if (searchQuery.trim()) {
-        onSearchSubmit(searchQuery);
+        onSearchSubmit({searchQuery, diets});  //Onsearch submit is an object containing a string and an array
     }
     };
     const handleDiets = (event)=>
