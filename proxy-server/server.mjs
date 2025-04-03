@@ -25,25 +25,37 @@ app.use(cors(
 app.get('/api/recipes', async(request, response) => {
     const {query} = request.query; 
 
+    console.log("query in server.mjs recieved from client:", query);
 
-    const endpoint = `${baseUrl}&q=${query}&app_id=${appId}&app_key=${apiKey}` //correct
+    const endpoint = `${baseUrl}&q=${query}&app_id=${appId}&app_key=${apiKey}`; //correct
+    console.log('API endpoint:', endpoint);
 
     try {
-        const response = await fetch(endpoint);
-        if (!response.ok){
+        const apiResponse = await fetch(endpoint);
+        
+        // console.log("response from the api:", apiResponse);
+        
+        if (apiResponse.status === 429) {
+            // Rate limit exceeded
+            // alert("api limit exceeded)");
+            const errorResponse = await apiResponse.json();
+            response.json(errorResponse); // Send the response back to the client
+            
+            // return response.status(429).json(errorResponse); // Send the response back to the client
+        }else if (!response.ok){
             // throw an error
             throw new Error(`error (server.mjs): ${response.status}`);
         }
-        const data = await response.json();
+        const data = await apiResponse.json();
         response.json(data);
     }
     catch(error){ // handle any errors that are thrown
         console.error("Error fetching data from API (server.mjs)", error);
-        response.status(500).json({error: 'Failed to fetch data (server.mjs)'}); // 500 is standard error code from server
+        // response.status(500).json({error: 'Failed to fetch data (server.mjs)'}); // 500 is standard error code from server
 
     }
 }) 
 
 app.listen(5000, () => { //5000 is port
-    console.log("server is running");
+    console.log("server is running on port 5000");
 })
