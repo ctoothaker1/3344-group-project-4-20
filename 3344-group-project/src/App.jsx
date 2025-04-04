@@ -7,6 +7,8 @@ import Home from './Pages/Home.jsx'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import SearchResults from './Pages/SearchResults.jsx'
 import FirstSearch from './Pages/FirstSearch.jsx'
+import MyMeals from './Pages/MyMeals.jsx'
+
 function App() {
   return (
     <>
@@ -14,9 +16,9 @@ function App() {
         <div className='App'>
           <Header />
           <Routes>
-            {/* Moved homepage elements to home file */}
             <Route path='/' element={<Home />} />
             <Route path='/search/' element={<FirstSearch />} />
+            <Route path='/mymeals/' element={<MyMeals/>}/>
             <Route path="/search/:query" element={<SearchResults />} />
           </Routes>
           <Footer />
