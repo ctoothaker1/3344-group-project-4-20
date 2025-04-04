@@ -4,23 +4,7 @@ import { useState } from 'react';
 import { useParams  } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import Search from '../components/Search/Search';
-
-function ProcessResults(resultsJson){
-  // process the results from the API call
-  // this function is not used yet, but we can use it to process the data returned by the API
-  const processedResults = resultsJson.map((result) => {
-    return {
-      title: result.recipe.label,
-      image: result.recipe.image,
-      url: result.recipe.url,
-    };
-  });
-  return processedResults;
-}
-
-
 
 const SearchResults = () => {
   const {query} = useParams();
@@ -81,24 +65,24 @@ const SearchResults = () => {
 
   return ( // display results under search bar
       
-      <div>
+    <div>
       <h1>{results.length} results for "{query}"</h1>
       <Search onSearchSubmit={handleSearchSubmit} />
       <ul>
-      {results.length > 0 ? (
-        results.map((result, index) => (
-            <li key={index} className='resultItem'>
-            <h3>{result.strMeal}</h3>
-            <img src={result.strMealThumb} alt={result.strMeal}/>
-            {/* Link to detailed recipe page */}
-            
-            </li>
-          ))
-      ) : (
-        <p>No results for "{query}".</p> 
-      )}
+        {results.length > 0 ? (
+          results.map((result, index) => (
+              <li key={index} className='resultItem'>
+              <h3>{result.strMeal}</h3>
+              <img src={result.strMealThumb} alt={result.strMeal}/>
+              {/* Link to detailed recipe page */}
+              
+              </li>
+            ))
+        ) : (
+          <p>No results for "{query}".</p> 
+        )}
       </ul>
-    </div>
+  </div>
 
   );
 };
