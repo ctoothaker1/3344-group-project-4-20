@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1743708127113" clover="3.2.0">
+  <project timestamp="1743708127113" name="All files">
+    <metrics statements="15" coveredstatements="15" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="7" elements="26" coveredelements="26" complexity="0" loc="15" ncloc="15" packages="1" files="1" classes="1"/>
+    <file name="Search.jsx" path="C:\Users\vivan\CIS3344FinalProjectGroup\3344-Group-Project\3344-group-project\src\components\Search\Search.jsx">
+      <metrics statements="15" coveredstatements="15" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="7"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="9" count="8" type="stmt"/>
+      <line num="10" count="8" type="stmt"/>
+      <line num="12" count="8" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="16" count="8" type="stmt"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="18" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="22" count="8" type="stmt"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="27" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="31" count="1" type="stmt"/>
+      <line num="39" count="8" type="stmt"/>
+    </file>
+  </project>
+</coverage>
