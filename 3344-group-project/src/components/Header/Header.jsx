@@ -1,7 +1,18 @@
 import React from "react";
 import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Header = () => {
+
+  const navigate = useNavigate();
+
+  const handleSearchButtonClick = () => {
+    navigate(`/search/`);
+  };
+
   return (
     <header className={styles.header}>
 
@@ -11,26 +22,10 @@ const Header = () => {
       <div id='rightContainer'>
         <nav>
           <ul className={styles.navLinks}>
-              <select name="Search" id="search">
-                <option value="" >Search</option>
-                <option value="filter">5-Ingredient Dinners</option>
-                <option value="one-pot">One-Pot Meals</option>
-                <option value="easy">Easy Meals</option>
-              </select>
-              {/* <select name="lunches" id="lunches">
-                <option value="" disabled>Lunches</option>
-                <option value="5-ingredient">5-Ingredient Meals</option>
-                <option value="sandwich">Sandwich Ideas</option>
-                <option value="soups">Soups</option>
-              </select>
-              <select name="breakfasts" id="breakfasts">
-                <option value="" disabled>Breakfasts</option>
-                <option value="5-ingredient">5-Ingredient Meals</option>
-                <option value="sandwich">Sandwich Ideas</option>
-                <option value="soups">Soups</option>
-              </select> */}
-              <li><a href="">My Meals</a></li>
-              <li><img src="../../src/assets/search.png" alt="Search Icon" /></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to='/mymeals/'>My Meals</Link></li>
+              <li><Link to='/search/'><img src="../../src/assets/search.png" alt="Search Icon" /></Link></li>
+
               {/*search icon source: <a href="https://www.flaticon.com/free-icons/magnifying-glass" title="magnifying glass icons">Magnifying glass icons created by chehuna - Flaticon</a>*/ }
 
           </ul>

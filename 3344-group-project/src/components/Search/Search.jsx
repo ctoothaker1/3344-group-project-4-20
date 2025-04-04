@@ -31,10 +31,9 @@ const Search = ({ onSearchSubmit }) => {
         setDiets(prev=>prev.filter(diet=>diet!=value)) //prev now equals an array full of diets that aren't the current value *(the user unchecks a diet)
       }
 
-
-
     }
 
+    
 
 
   return (
