@@ -45,11 +45,14 @@ const SearchResults = () => {
       
       const data = await response.json(); // set data to json API response ERRRRRROR
 
-      console.log("data variable: ",data); // returns error response from line 52 in server.mjs
+      console.log("fetched data variable (searchresults.jsx): ",data); // returns error response from line 52 in server.mjs
       
-      setResults(data.hits);
-
-      // setResults(data.hits); // hits are the matches
+      if (data.meals){//translate the data
+        setResults(data.meals); 
+      }
+      else{
+        setResults([]); // no results found, set results to empty array to avoid errors
+      }
 
     }
     catch(error)
@@ -67,20 +70,6 @@ const SearchResults = () => {
     fetchSearchResults(query); 
   },[query]); 
 
-  // useEffect(() => {
-  //   //simulate search results until api implemented
-  //   // replace with the actual api call that returns results
-  //   //need other functions to get the data from each recipe returned by the api in order to display quick look information
-  //   const simulatedResults = [
-  //     'Green salad with avocado',
-  //     'taco salad',
-  //     'egg salad',
-  //     'chicken salad',
-  //   ].filter((item) =>
-  //     item.toLowerCase().includes(query.toLowerCase())
-  //   );
-  //   setResults(simulatedResults);
-  // }, [query]); // this effect runs whenever the query changes
 
     //execute this when search is performed
     const handleSearchSubmit = (searchQuery) => {
@@ -88,31 +77,7 @@ const SearchResults = () => {
         navigate(`/search/${searchQuery}`);
       
     };
-
-
     console.log("length of results: ",results.length);
-
-    // let output = ''; // html output
-    // results.forEach((result) => {
-    //   output += `
-    //     <div>
-    //       <li>${result.status},${result.message}</li>
-    //     </div>
-    //   `;
-    // });
-
-
-//old code inside return: 
-// {results.length > 0 ? (
-//   <ul>
-//     {results.map((result, index) => (
-//       <li key={index} className='resultItem'>{result}</li>
-//     ))}
-//   </ul>
-// ) : (
-//   <p>No results for "{query}".</p> 
-// )}
-
 
   return ( // display results under search bar
       
@@ -120,11 +85,18 @@ const SearchResults = () => {
       <h1>{results.length} results for "{query}"</h1>
       <Search onSearchSubmit={handleSearchSubmit} />
       <ul>
-      {results.map((result, index) => (
-          <li key={index}>
-            {result.status}, {result.message}
-          </li>
-        ))}
+      {results.length > 0 ? (
+        results.map((result, index) => (
+            <li key={index} className='resultItem'>
+            <h3>{result.strMeal}</h3>
+            <img src={result.strMealThumb} alt={result.strMeal}/>
+            {/* Link to detailed recipe page */}
+            
+            </li>
+          ))
+      ) : (
+        <p>No results for "{query}".</p> 
+      )}
       </ul>
     </div>
 

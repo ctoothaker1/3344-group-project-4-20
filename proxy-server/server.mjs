@@ -7,9 +7,8 @@ dotenv.config(); //pull all environment files from .env into server
 
 const app = express(); // create a new express application
 
-const baseUrl = "https://api.edamam.com/api/recipes/v2?type=public";
+const baseUrl = "https://www.themealdb.com/api/json/v1/"; //
 const apiKey = process.env.API_KEY;
-const appId = process.env.APP_ID;
 
 app.use(cors(
     //tells the browser that these endpoints are safe, it will not error once we specify our endpoints
@@ -27,7 +26,7 @@ app.get('/api/recipes', async(request, response) => {
 
     console.log("query in server.mjs recieved from client:", query);
 
-    const endpoint = `${baseUrl}&q=${query}&app_id=${appId}&app_key=${apiKey}`; //correct
+    const endpoint = `${baseUrl}${apiKey}/search.php?s=${query}`; //correct
     console.log('API endpoint:', endpoint);
 
     try {
@@ -35,19 +34,13 @@ app.get('/api/recipes', async(request, response) => {
         
         // console.log("response from the api:", apiResponse);
         
-        if (apiResponse.status === 429) {
-            // Rate limit exceeded
-            // alert("api limit exceeded)");
-            const errorResponse = await apiResponse.json();
-            response.json(errorResponse); // Send the response back to the client
-            
-            // return response.status(429).json(errorResponse); // Send the response back to the client
-        }else if (!response.ok){
+        if (!response.status === 200) { // check if the response is not ok (200)
             // throw an error
-            throw new Error(`error (server.mjs): ${response.status}`);
+            throw new Error(`error (server.mjs): ${apiResponse.status}`);
         }
         const data = await apiResponse.json();
-        response.json(data);
+
+        response.json(data);//send response back to the client
     }
     catch(error){ // handle any errors that are thrown
         console.error("Error fetching data from API (server.mjs)", error);
