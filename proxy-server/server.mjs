@@ -9,15 +9,9 @@ const app = express(); // create a new express application
 
 const baseUrl = "https://www.themealdb.com/api/json/v1/"; //
 const apiKey = process.env.API_KEY;
+app.use(cors());
 
-app.use(cors(
-    //tells the browser that these endpoints are safe, it will not error once we specify our endpoints
-    {
-        origin: ["http://localhost:5173", "http://localhost:5000"],
-        methods: ["GET","POST"],
-        allowedHeaders: ["Content-Type", "Authorization"]
-    }));
-
+    console.log("✅ CORS middleware is running");
 // fetch the api using express application
 // this will be specific to our api idk what it should look like
 // all api related tasks should be here to shield it from the frontend
