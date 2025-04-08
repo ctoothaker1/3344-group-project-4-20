@@ -15,8 +15,9 @@ const Search = ({ onSearchSubmit }) => {
 
     const handleSubmit = (event) => {
     event.preventDefault();
-    if (searchQuery.trim()) {
-        onSearchSubmit(searchQuery);
+    const trimmedQuery = searchQuery.trim();
+    if (trimmedQuery) {
+        onSearchSubmit(trimmedQuery);
     }
     };
     const handleDiets = (event)=>
