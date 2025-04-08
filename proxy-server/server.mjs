@@ -7,41 +7,42 @@ dotenv.config(); //pull all environment files from .env into server
 
 const app = express(); // create a new express application
 
-const baseUrl = process.env.BASE_URL_FOR_API;
+const baseUrl = "https://www.themealdb.com/api/json/v1/"; //
 const apiKey = process.env.API_KEY;
+app.use(cors());
 
-app.use(cors(
-    //tells the browser that these endpoints are safe, it will not error once we specify our endpoints
-    {
-        origin: ["http://localhost:5173", "http://localhost:5000"],
-        methods: ["GET","POST"],
-        allowedHeaders: ["Content-Type", "Authorization"]
-    }
-))
-
+    console.log("✅ CORS middleware is running");
 // fetch the api using express application
 // this will be specific to our api idk what it should look like
 // all api related tasks should be here to shield it from the frontend
 app.get('/api/recipes', async(request, response) => {
     const {query} = request.query; 
-    const endpoint = `${baseUrl}?q=${query}&api-key=${apiKey}`;
+
+    console.log("query in server.mjs recieved from client:", query);
+
+    const endpoint = `${baseUrl}${apiKey}/search.php?s=${query}`; //correct
+    console.log('API endpoint:', endpoint);
 
     try {
-        const response = await fetch(endpoint);
-        if (!response.ok){
+        const apiResponse = await fetch(endpoint);
+        
+        // console.log("response from the api:", apiResponse);
+        
+        if (!response.status === 200) { // check if the response is not ok (200)
             // throw an error
-            throw new Error(`error: ${response.status}`);
+            throw new Error(`error (server.mjs): ${apiResponse.status}`);
         }
-        const data = await response.json();
-        response.json(data);
+        const data = await apiResponse.json();
+
+        response.json(data);//send response back to the client
     }
     catch(error){ // handle any errors that are thrown
-        console.error("Error fetching data from API", error);
-        response.status(500).json({error: 'Failed to fetch data'}); // 500 is standard error code from server
+        console.error("Error fetching data from API (server.mjs)", error);
+        // response.status(500).json({error: 'Failed to fetch data (server.mjs)'}); // 500 is standard error code from server
 
     }
 }) 
 
 app.listen(5000, () => { //5000 is port
-    console.log("server is running");
+    console.log("server is running on port 5000");
 })

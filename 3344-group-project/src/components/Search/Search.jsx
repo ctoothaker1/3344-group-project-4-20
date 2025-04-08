@@ -4,10 +4,10 @@ import { useState } from "react";
 
 //search component with input and button
 
-const Search = ({ onSearchSubmit }) => {
+const Search = ({onSearchSubmit}) => {
 
     const [searchQuery, setSearchQuery] = useState('');
-    const[diets,setDiets]= useState([]);
+
 
     const handleInputChange = (event) => { // change search query as it changes
         setSearchQuery(event.target.value);
@@ -46,29 +46,6 @@ const Search = ({ onSearchSubmit }) => {
         <button type = "submit">Search</button> 
         {/* run search function, redirect to search page*/ }
         </form>
-        <section>
-            <label>
-              <input type="checkbox" value="balanced" checked={diets.includes("balanced")} onChange={handleDiets}/>balanced
-            </label>
-            <label>
-              <input type="checkbox" value="high-fiber" checked={diets.includes("high-fiber")} onChange={handleDiets}/>high-fiber
-            </label>
-            <label>
-              <input type="checkbox" value="high-protein" checked={diets.includes("high-protein")} onChange={handleDiets}/>high-protein
-            </label>
-            <label>
-              <input type="checkbox" value="low-carb" checked={diets.includes("low-carb")} onChange={handleDiets}/>low-carb
-            </label>
-            <label>
-              <input type="checkbox" value="low-fat" checked={diets.includes("low-fat")} onChange={handleDiets}/>low-fat
-            </label>
-            <label>
-              <input type="checkbox" value="low-sodium" checked={diets.includes("low-sodium")} onChange={handleDiets}/>low-sodium
-            </label>
-
-
-
-      </section>
     </div>
    
 
