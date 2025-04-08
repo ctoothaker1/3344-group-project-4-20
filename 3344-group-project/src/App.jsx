@@ -5,7 +5,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Home from './Pages/Home.jsx'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import SearchResults from './Pages/SearchResults.jsx'
+import SearchResults from './Pages/SearchResults/SearchResults.jsx'
 import FirstSearch from './Pages/FirstSearch.jsx'
 import MyMeals from './Pages/MyMeals.jsx'
 

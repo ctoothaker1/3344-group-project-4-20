@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { useParams  } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Search from '../components/Search/Search';
-import Filter from '../components/Filter/Filter.jsx';
+import Search from '../../components/Search/Search.jsx';
+import Filter from '../../components/Filter/Filter.jsx';
+import styles from './SearchResults.module.css'
+
 
 const SearchResults = () => {
   const {query} = useParams();
@@ -21,17 +23,10 @@ const SearchResults = () => {
 
   const [loading, setLoading] = useState(false); //loading state=false by default
 
-
-
-
   const handleFilter=(filters)=>
     {
       setFilters(filters);
     }
-
-
-
-
 
   //API CALL with provided query
   const fetchSearchResults = async (query) => {
@@ -101,25 +96,30 @@ const SearchResults = () => {
 
   return ( // display results under search bar
       
-    <div>
+    <div className={styles.mainContent}>
       <h1>{results.length} results for "{query}"</h1>
-      <Search onSearchSubmit={handleSearchSubmit} />
-      <Filter getFilter={handleFilter}></Filter>
+      <div className={styles.searchContainer}>
+        <Search onSearchSubmit={handleSearchSubmit} />
+      </div>
+      
+        <Filter getFilter={handleFilter}></Filter>
 
-      <ul>
-        {filteredResults.length > 0 ? (
-         filteredResults.map((result, index) => (
-              <li key={index} className='resultItem'>
-              <h3>{result.strMeal}</h3>
-              <img src={result.strMealThumb} alt={result.strMeal}/>
-              {/* Link to detailed recipe page */}
-              
-              </li>
-            ))
-        ) : (
-          <p>No results for "{query}".</p> 
-        )}
-      </ul>
+        <div className={styles.searchResultsContainer}>
+        <ul>
+          {filteredResults.length > 0 ? (
+          filteredResults.map((result, index) => (
+                <li key={index} className={styles.resultItem}>
+                <h3>{result.strMeal}</h3>
+                <img src={result.strMealThumb} alt={result.strMeal}/>
+                {/* Link to detailed recipe page */}
+                
+                </li>
+              ))
+          ) : (
+            <p>No results for "{query}".</p> 
+          )}
+        </ul>
+      </div>
   </div>
 
   );

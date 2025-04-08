@@ -1,0 +1,24 @@
+.searchContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.searchResultsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.resultItem{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    border-radius: 8px;
+    width: 55vw;
+}
+.resultItem img{
+    max-width: 50vw;
+    margin-bottom: 20px;
+}

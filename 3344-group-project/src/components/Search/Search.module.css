@@ -9,8 +9,7 @@
     margin-top: 10px;
     gap: 10px;
     align-items: center; /* vertically center*/
-    max-width: 75vw;
-    min-width: fit-content;
+    max-width: 50vw;
     flex-grow: 1; /* grow when window horizontally grows*/
 }
 .searchContainer label {
