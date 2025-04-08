@@ -98,10 +98,10 @@ const SearchResults = () => {
       
     <div className={styles.mainContent}>
       <h1>{results.length} results for "{query}"</h1>
-      <div className={styles.searchContainer}>
+      <div className={styles.searchComponentContainer}>
         <Search onSearchSubmit={handleSearchSubmit} />
       </div>
-      
+
         <Filter getFilter={handleFilter}></Filter>
 
         <div className={styles.searchResultsContainer}>

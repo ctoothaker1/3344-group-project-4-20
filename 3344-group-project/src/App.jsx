@@ -9,6 +9,7 @@ import SearchResults from './Pages/SearchResults/SearchResults.jsx'
 import FirstSearch from './Pages/FirstSearch.jsx'
 import MyMeals from './Pages/MyMeals.jsx'
 
+
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
         <div className='App'>
           <Header />
           <Routes>
+            {/* <Route path='/recipe' element={}></> */}
             <Route path='/' element={<Home />} />
             <Route path='/search/' element={<FirstSearch />} />
             <Route path='/mymeals/' element={<MyMeals/>}/>
