@@ -7,25 +7,53 @@ import { useNavigate } from 'react-router-dom';
 import Search from '../components/Search/Search';
 
 const SearchResults = () => {
-
-  const { query } = useParams();
+  const {query} = useParams();
+  
   const [results, setResults] = useState([]); // store the search results
   const navigate = useNavigate();
+  // const location = useLocation();
+  // const queryParams = new URLSearchParams(location.search);
+
+  const [loading, setLoading] = useState(false); //loading state=false by default
+
+  //API CALL with provided query
+  const fetchSearchResults = async (query) => {
+    setLoading(true); // fetching data, set loading to true
+    
+    try
+    {
+      // this should be the endpoint we created in the server
+      //const response = await fetch(`/api/recipes?query=${query}`); // //`http://localhost:5000/api/recipes?query=${query}`
+      const response = await fetch(`http://localhost:5000/api/recipes?query=${query}`);
+      console.log("response variable: ",response);
+      
+      const data = await response.json(); // set data to json API response ERRRRRROR
+
+      console.log("fetched data variable (searchresults.jsx): ",data); // returns error response from line 52 in server.mjs
+      
+      if (data.meals){//translate the data
+        setResults(data.meals); 
+      }
+      else{
+        setResults([]); // no results found, set results to empty array to avoid errors
+      }
+
+    }
+    catch(error)
+    {
+      console.error("error fetching recipes from API (in SearchResults.jsx)", error);
+      // alert("error fetching recipes from API (in SearchResults.jsx)", error);
+    }
+    finally
+    {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
-    //simulate search results until api implemented
-    // replace with the actual api call that returns results
-    //need other functions to get the data from each recipe returned by the api in order to display quick look information
-    const simulatedResults = [
-      'Green salad with avocado',
-      'taco salad',
-      'egg salad',
-      'chicken salad',
-    ].filter((item) =>
-      item.toLowerCase().includes(query.toLowerCase())
-    );
-    setResults(simulatedResults);
-  }, [query]); // this effect runs whenever the query changes
+    fetchSearchResults(query); 
+  },[query]); 
+
 
     //execute this when search is performed
     const handleSearchSubmit = (searchQuery) => {
@@ -33,22 +61,28 @@ const SearchResults = () => {
         navigate(`/search/${searchQuery}`);
       
     };
+    console.log("length of results: ",results.length);
 
   return ( // display results under search bar
       
-      <div>
+    <div>
       <h1>{results.length} results for "{query}"</h1>
       <Search onSearchSubmit={handleSearchSubmit} />
-      {results.length > 0 ? (
-        <ul>
-          {results.map((result, index) => (
-            <li key={index} className='resultItem'>{result}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No results for "{query}".</p> 
-      )}
-    </div>
+      <ul>
+        {results.length > 0 ? (
+          results.map((result, index) => (
+              <li key={index} className='resultItem'>
+              <h3>{result.strMeal}</h3>
+              <img src={result.strMealThumb} alt={result.strMeal}/>
+              {/* Link to detailed recipe page */}
+              
+              </li>
+            ))
+        ) : (
+          <p>No results for "{query}".</p> 
+        )}
+      </ul>
+  </div>
 
   );
 };

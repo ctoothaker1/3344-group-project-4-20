@@ -27,3 +27,5 @@ dist-ssr
 /node_modules
 *.env
 .env
+../proxy-server/.env
+../proxy-server/node_modules
