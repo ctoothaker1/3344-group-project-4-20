@@ -1,7 +1,7 @@
 // this file contains search page layout when /search/somequery is in the url
 import React from 'react';
 import { useState } from 'react';
-import { useParams  } from 'react-router-dom';
+import { Link, useParams  } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Search from '../../components/Search/Search.jsx';
@@ -11,16 +11,10 @@ import styles from './SearchResults.module.css'
 
 const SearchResults = () => {
   const {query} = useParams();
-  
   const [results, setResults] = useState([]);
-
-  // store the search results
-   const[filters,setFilters]=useState([]);
-   const [filteredResults,setFilteredResults]=useState([])
+  const [filters,setFilters] = useState([]);
+  const [filteredResults,setFilteredResults]=useState([])
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const queryParams = new URLSearchParams(location.search);
-
   const [loading, setLoading] = useState(false); //loading state=false by default
 
   const handleFilter=(filters)=>
@@ -32,7 +26,7 @@ const SearchResults = () => {
   const fetchSearchResults = async (query) => {
     setLoading(true); // fetching data, set loading to true
     const endpoint = `http://localhost:5000/api/recipes?query=${query}`;
-  console.log("✅ Final API endpoint:", endpoint);
+    console.log("✅ Final API endpoint:", endpoint);
     try
     {
       // this should be the endpoint we created in the server
@@ -68,6 +62,7 @@ const SearchResults = () => {
   useEffect(() => {
     fetchSearchResults(query);
   },[query]); 
+
   useEffect(()=>{
   if(filters.length==0)
   {
@@ -79,10 +74,8 @@ const SearchResults = () => {
       //new array where for each recipe within the results array 
      //filters is iterated through itself to see if it contains the current recipe's category 
     );
-    setFilteredResults(filtered);
-  }
-
-
+      setFilteredResults(filtered);
+    }
   },[filters,results]
   );
 
@@ -92,36 +85,37 @@ const SearchResults = () => {
         navigate(`/search/${searchQuery}`);
       
     };
-    console.log("length of results: ",results.length);
+    // console.log("length of results: ",results.length);
 
   return ( // display results under search bar
       
     <div className={styles.mainContent}>
-      <h1>{results.length} results for "{query}"</h1>
       <div className={styles.searchComponentContainer}>
         <Search onSearchSubmit={handleSearchSubmit} />
       </div>
-
         <Filter getFilter={handleFilter}></Filter>
-
-        <div className={styles.searchResultsContainer}>
-        <ul>
-          {filteredResults.length > 0 ? (
-          filteredResults.map((result, index) => (
-                <li key={index} className={styles.resultItem}>
-                <h3>{result.strMeal}</h3>
-                <img src={result.strMealThumb} alt={result.strMeal}/>
-                {/* Link to detailed recipe page */}
-                
-                </li>
-              ))
-          ) : (
-            <p>No results for "{query}".</p> 
-          )}
-        </ul>
-      </div>
+        {loading ? (
+          <h3>Loading...</h3>
+            ) : (
+        <h3>{results.length} results for "{query}"</h3>)}
+          <div className={styles.searchResultsContainer}>
+          <ul className={styles.resultsList}>
+            {loading ? (<p>Loading...</p>
+            ) : filteredResults.length > 0 ? (
+            filteredResults.map((result) => (
+              <li key={result.idMeal} className={styles.resultItem}>
+                <Link to={`/recipe/${result.idMeal}`} className={styles.resultLink}>
+                  <h2>{result.strMeal}</h2>
+                  <img src={result.strMealThumb} alt={result.strMeal}/>
+                </Link>
+              </li>
+              )) 
+            ) : (
+              <p>No results for "{query}".</p> 
+            )}
+          </ul>
+        </div>
   </div>
-
   );
 };
 
