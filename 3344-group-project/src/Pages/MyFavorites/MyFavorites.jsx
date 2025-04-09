@@ -1,16 +1,17 @@
 // this file contains a user's meal plans page layout
 import React from 'react';
-
+import styles from './MyFavorites.module.css'
 const MyFavorites = () => {
 
   return (
-    <div>
+    <div classname={styles.listContainer}>
       <h1>Favorites</h1>
       <p>a 'favorite' is a meal that the user adds to their favorites list.</p>
       <h3>This page will: </h3>
       <ul>
         <li>be the landing page for when 'favorites' button in header is clicked</li>
         <li>REUSE CODE FROM MealPlan.jsx PAGE</li>
+        <li>Potentially save the clicked options as an array that can be locally stored fore future use</li>
         <li>meals will be clickable, or there can be a button that displays on hover that redirects to the recipe page</li>
         <li>display all favorited meals</li>
         <li>allow users to delete favorite meals from the list (buttons appear on meal plan hover... reuse code from mymeals)</li>
