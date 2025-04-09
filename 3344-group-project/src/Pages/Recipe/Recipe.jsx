@@ -3,6 +3,8 @@
 import React, {useEffect,useState} from 'react';
 // ******* Out of all the things we need to do, this is the most important
 import {useParams} from 'react-router-dom'; // this is used to get the idMeal from the URL
+import styles from './Recipe.module.css';
+
 
 const Recipe = () => {
     const {idMeal} = useParams();
@@ -32,26 +34,28 @@ const Recipe = () => {
 
 
     return (
-        <div>
-        <h1>Recipe</h1>
-        <p>a 'recipe' is a single meal</p>
-        <h3>This page will: </h3>
-        <ul>
-            <li>Display a recipe after the user clicks something on a separate page to 'view details' about it</li>
-            <li>Meal details are displayed in the components based on the idMeal parameter in the URL</li>
-            <ul>
-                <li>these details include: instructions, ingredients, measurements for ingredients, and more if we want.</li>
-            </ul>
-            <li>anything else?</li>
-        </ul>
+        // <div>
+        // <h1>Recipe</h1>
+        // <p>a 'recipe' is a single meal</p>
+        // <h3>This page will: </h3>
+        // <ul>
+        //     <li>Display a recipe after the user clicks something on a separate page to 'view details' about it</li>
+        //     <li>Meal details are displayed in the components based on the idMeal parameter in the URL</li>
+        //     <ul>
+        //         <li>these details include: instructions, ingredients, measurements for ingredients, and more if we want.</li>
+        //     </ul>
+        //     <li>anything else?</li>
+        // </ul>
+        // </div>
 
-        <h1>Detailed recipe display:</h1>
-        <div>
-            <h2>{recipe.strMeal}</h2>
-            <img src={recipe.strMealThumb} alt={recipe.strMeal} />
-        </div>
+        <main className={styles.mainContent}>
+            <h1>Detailed recipe display:</h1>
+            <div className={styles.leftContainer}>
+                <h2>{recipe.strMeal}</h2>
+                <img src={recipe.strMealThumb} alt={recipe.strMeal} />
+            </div>
+        </main>
         
-        </div>
   );
 
 }

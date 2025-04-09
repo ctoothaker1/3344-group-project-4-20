@@ -90,31 +90,32 @@ const SearchResults = () => {
   return ( // display results under search bar
       
     <div className={styles.mainContent}>
-      <h1>{results.length} results for "{query}"</h1>
       <div className={styles.searchComponentContainer}>
         <Search onSearchSubmit={handleSearchSubmit} />
       </div>
-
         <Filter getFilter={handleFilter}></Filter>
-
-        <div className={styles.searchResultsContainer}>
-        <ul>
-          {filteredResults.length > 0 ? (
-          filteredResults.map((result) => (
-                <li key={result.idMeal} className={styles.resultItem}>
-                  <Link to={`/recipe/${result.idMeal}`}>
-                    <h3>{result.strMeal}</h3>
-                    <img src={result.strMealThumb} alt={result.strMeal}/>
-                  </Link>
-                </li>
-              ))
-          ) : (
-            <p>No results for "{query}".</p> 
-          )}
-        </ul>
-      </div>
+        {loading ? (
+          <h3>Loading...</h3>
+            ) : (
+        <h3>{results.length} results for "{query}"</h3>)}
+          <div className={styles.searchResultsContainer}>
+          <ul className={styles.resultsList}>
+            {loading ? (<p>Loading...</p>
+            ) : filteredResults.length > 0 ? (
+            filteredResults.map((result) => (
+              <li key={result.idMeal} className={styles.resultItem}>
+                <Link to={`/recipe/${result.idMeal}`} className={styles.resultLink}>
+                  <h2>{result.strMeal}</h2>
+                  <img src={result.strMealThumb} alt={result.strMeal}/>
+                </Link>
+              </li>
+              )) 
+            ) : (
+              <p>No results for "{query}".</p> 
+            )}
+          </ul>
+        </div>
   </div>
-
   );
 };
 
