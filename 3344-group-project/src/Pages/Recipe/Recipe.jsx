@@ -48,6 +48,7 @@ const Recipe = () => {
         <h1>Detailed recipe display:</h1>
         <div>
             <h2>{recipe.strMeal}</h2>
+            <img src={recipe.strMealThumb} alt={recipe.strMeal} />
         </div>
         
         </div>
