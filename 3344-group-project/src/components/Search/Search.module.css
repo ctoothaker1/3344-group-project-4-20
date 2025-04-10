@@ -1,5 +1,6 @@
 .searchContainer{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     background-color: #fff;
     border-radius: 10px;
@@ -33,4 +34,11 @@
     border: none; 
     border-radius: 5px;
     margin-right: 10px
+}
+@media screen and (max-width:480px) {
+    .searchContainer form{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
 }
