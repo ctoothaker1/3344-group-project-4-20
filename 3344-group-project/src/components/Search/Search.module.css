@@ -1,44 +1,61 @@
-.searchContainer{
+.searchContainer {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 12px 9px rgba(0, 0, 0, 0.1); /* -l/+r shadow | height | radius */
-    padding: 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 90vw;
+}
+
+.searchContainer form {
+    display: flex;
+    align-items: center;
     gap: 10px;
-    align-items: center; /* vertically center*/
-    max-width: 50vw;
-    flex-grow: 1; /* grow when window horizontally grows*/
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10x;
+    box-shadow: 0px 12px 9px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
 .searchContainer label {
-    font-size: large;
-    margin-left: 10px;
-    margin-right: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
+
 .searchContainer input {
-    flex-grow: 1;
-    padding: 5px 12px;
-    font-size: large;
+    padding: 10px 15px;
+    font-size: 1rem;
     border: 2px solid #4d4c4c;
-    border-radius: 2px;
-}
-.searchContainer button {
-    padding: 8px 15px;
-    font-size: 16px; 
-    cursor: pointer; /*show hand*/
-    background-color: #004d13e5;; 
-    color: white;
-    border: none; 
     border-radius: 5px;
-    margin-right: 10px
+    flex-grow: 1;
+    min-width: 200px;
 }
-@media screen and (max-width:480px) {
-    .searchContainer form{
-        align-items: center;
-        display: flex;
+
+.searchContainer button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #004d13e5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.searchContainer button:hover {
+    background-color: #00691f;
+}
+
+@media screen and (max-width: 600px) {
+    .searchContainer form {
         flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .searchContainer input,
+    .searchContainer button {
+        width: 100%;
     }
 }
