@@ -6,9 +6,10 @@ const function AddFavorite()
 {
     const [recipes,setRecipes]=useState([]);
 
+
     const isSelected=recipes.includes(recipes); //determines whether or not the recipe is in their list 
 
-    const handleClick()=>
+    const handleClick=()=>  //main priority is to modify
     {
         const updatedArray= isSelected //if the button was previously selected aka the user already added it to the list 
         ? //we know that the user is trying to remove it from their list (it was already added)
@@ -16,12 +17,12 @@ const function AddFavorite()
         :  [...recipes,value];
 
         setRecipes(updatedArray);
-        getList(updatedArray);
+        getList(updatedArray); //we are gonna pass this to search results so that button will display
        
 
     };
     useEffect(()=>{
-    localStorage.set(recipes)
+    localStorage.setItems("list", JSON.stringify(recipes)); //saving the array as a list within local storage 
  },[recipes] );
 
         return(
