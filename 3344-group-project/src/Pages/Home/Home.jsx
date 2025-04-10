@@ -19,15 +19,23 @@ function Home() {
 
   return ( // HOME PAGE LAYOUT
     <>
-        <main>
+        <main style={{ padding: "40px 20px", display: "block" }}>
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "20px",
+            flexWrap: "wrap"
+          }}>
+          
           <h1>this is the homepage</h1>
-        <Search onSearchSubmit={handleSearchSubmit}/> {/* search component*/}
+          <Search onSearchSubmit={handleSearchSubmit}/> {/* search component*/}
           {/* Brief paragraph about our site? */}
           {/* Featured Recipes (breakfasts??)*/}
           {/* Featured Recipes (lunches??)*/}
           {/* Featured Recipes (dinners??)*/}
           {/* Featured Recipes (random??)*/}
           {/* Component for new users: EX button to create your first meal plan, and a button to search*/}
+          </div>
         </main>
     </>
   )

@@ -39,14 +39,12 @@ const Search = ({onSearchSubmit}) => {
 
   return (
 
-    <div className={styles.searchContainer}>
-        <form onSubmit={handleSubmit}>
+    <form className={styles.searchContainer} onSubmit={handleSubmit}>
         <label htmlFor="search-box">Search:</label>
         <input type ="text" id="search-box" value={searchQuery} onChange={handleInputChange} placeholder="What do you want to cook?"></input>
         <button type = "submit">Search</button> 
         {/* run search function, redirect to search page*/ }
-        </form>
-    </div>
+    </form>
    
 
     
