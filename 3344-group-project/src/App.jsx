@@ -29,7 +29,7 @@ function App() {
             <Route path='/myplans/' element={<MyPlans/>}/>
             <Route path='/plan/' element={<MealPlan/>}></Route>
             <Route path='/plan/:planName' element={<MealPlan/>}></Route>
-            <Route path='/search/' element={<FirstSearch />} />
+            <Route path='/search/' element={<SearchResults />} />
             <Route path="/search/:query" element={<SearchResults />} />
           </Routes>
           <Footer />

@@ -47,8 +47,9 @@ const Recipe = () => {
 //     <li>anything else?</li>
 // </ul>
 // </div>
-
+        
         <main className={styles.mainContent}>
+            <p>add navbar at top</p>
             <div className={styles.leftContainer}>
                 <h1>{recipe.strMeal}</h1>
                 <img src={recipe.strMealThumb} alt={recipe.strMeal} className={styles.recipeImg}/>
