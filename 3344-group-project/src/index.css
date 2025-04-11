@@ -8,11 +8,7 @@ body{
 html {
   scroll-behavior: smooth;
 }
-main{
-  display: flex;
-  justify-content: center;
-  
-}
+
 /* increase font size for phone screens*/ 
 /*@media screen and (max-width: 375px) { 
   body {

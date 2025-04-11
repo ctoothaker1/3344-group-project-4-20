@@ -85,10 +85,11 @@ const SearchResults = () => {
     };
 
   return ( // display results under search bar
-    <div className={styles.mainContent}>
-      <div className={styles.searchComponentContainer}>
-        <Search onSearchSubmit={handleSearchSubmit} />
-      </div>
+    <main>
+      <div className={styles.mainContent}>
+        <div className={styles.searchComponentContainer}>
+          <Search onSearchSubmit={handleSearchSubmit} />
+        </div>
         <Filter getFilter={handleFilter}></Filter>
         {/* display results header only if there is a query and not loading */}
     {query && !loading && filteredResults.length!=0 && (
@@ -119,7 +120,8 @@ const SearchResults = () => {
         }
           </ul>
         </div>
-  </div>
+    </div>
+  </main>
   );
 };
 

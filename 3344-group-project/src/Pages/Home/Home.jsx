@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // import siteLogo from '/siteLogo.svg'  -- we should make a logo
 // import './App.css'
 import Search from '../../components/Search/Search';
-import './Home.css';
+import styles from './Home.module.css';
 
 function Home() {
 
@@ -20,15 +20,15 @@ function Home() {
 
   return ( // HOME PAGE LAYOUT
     <>
-        <main className="homepage">
-          <div className="homepage-content">
-            <div className="homepage-row">
-              <div className="homepage-left">
-                <h1 className="homepage-title">This is the Homepage</h1>
+        <main className={styles.homepage}>
+          <div className={styles.homepageContent}>
+            <div className={styles.homepageRow}>
+              <div className={styles.homepageLeft}>
+                <h1 className={styles.homepageTitle}>This is the Homepage</h1>
                 <Search onSearchSubmit={handleSearchSubmit}/> {/* search component*/}
               </div>
-              <div className="homepage-right">
-                <p className="homepage-description">
+              <div className={styles.homepageRight}>
+                <p className={styles.homepageDescription}>
                   Welcome to <strong>Recipe Advisor</strong> - your personalized meal planning/ Recipe Search Assistant!
                   Easily search for delicious recipes from around  the world, customize your own meal plans, and save
                   all your favorites all in one place. Whether you're cooking for health, fun, or family, we've got the 

@@ -3,7 +3,7 @@
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-.homepage-content {
+.homepageContent {
     max-width: 1100px;
     margin: 0 auto;
     padding: 40px 20px;
@@ -11,7 +11,7 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-.homepage-row {
+.homepageRow {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -19,44 +19,44 @@
     flex-wrap: wrap;
 }
 
-.homepage-left {
+.homepageLeft {
     flex: 1;
     min-width: 300px;
 }
 
-.homepage-right {
+.homepageRight {
     flex: 1;
     min-width: 300px;
 }
 
-.homepage-title {
+.homepageTitle {
     margin-bottom: 20px;
     font-size: 2rem;
     font-weight: 700;
 }
 
-.homepage-description {
+.homepageDescription {
     font-size: 1.1rem;
     max-width: 600px;
     line-height: 1.6;
     margin: 0;
 }
 
-@media (max-width: 768px) {
-    .homepage-content {
+@media screen and (max-width: 768px) {
+    .homepageContent {
         padding: 30px 15px;
     }
 
-    .homepage-row {
+    .homepageRow {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .homepage-title {
+    .homepageTitle {
         font-size: 1.5rem;
     }
 
-    .homepage-description {
+    .homepageDescription {
         font-size: 1rem;
     }
 }
