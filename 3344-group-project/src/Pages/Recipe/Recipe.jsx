@@ -14,7 +14,7 @@ const Recipe = () => {
     const fetchRecipeDetails = async () => {
         try {
             console.log("idmeal: ",idMeal);
-            const response = await fetch(`http://localhost:5000/api/recipe/${idMeal}`);
+            const response = await fetch(`http://localhost:5001/api/recipe/${idMeal}`);
             const data = await response.json();
             setRecipe(data.meals[0]); // only one result based on id, take first element in json
             console.log(data.meals);
@@ -47,8 +47,9 @@ const Recipe = () => {
 //     <li>anything else?</li>
 // </ul>
 // </div>
-
+        
         <main className={styles.mainContent}>
+            <p>add navbar at top</p>
             <div className={styles.leftContainer}>
                 <h1>{recipe.strMeal}</h1>
                 <img src={recipe.strMealThumb} alt={recipe.strMeal} className={styles.recipeImg}/>
