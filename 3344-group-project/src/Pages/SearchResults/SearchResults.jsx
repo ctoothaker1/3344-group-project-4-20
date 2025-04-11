@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Search from '../../components/Search/Search.jsx';
 import Filter from '../../components/Filter/Filter.jsx';
-import AddFavorites from '../../components/MyFavorites/AddFavorites.jsx'
+import AddFavorites from '../../Pages/MyFavorites/AddFavorite.jsx'
 import styles from './SearchResults.module.css'
 
 
