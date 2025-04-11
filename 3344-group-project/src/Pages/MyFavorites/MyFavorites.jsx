@@ -1,26 +1,37 @@
 // this file contains a user's meal plans page layout
 import React from 'react';
 import styles from './MyFavorites.module.css'
-const MyFavorites = () => {
+import AddFavorites from './AddFavorite.jsx'
+import {  useState, useEffect } from 'react';
 
+const MyFavorites = () => {
+//essentially we are going to grab the local storage from 
+//add Favorites 
+//we are going to display it 
+// and then we are going to allow the opportunity remove from the list
+  // to do this we need 
+
+  const [favorites, setFavorites] = useState([]);
+  
+  useEffect(() => {
+    const saved = localStorage.getItem("list");
+    if (saved) {
+      setFavorites(JSON.parse(saved));
+    }
+  }, []);
+
+  
   return (
     <div classname={styles.listContainer}>
-      <h1>Favorites</h1>
-      <p>a 'favorite' is a meal that the user adds to their favorites list.</p>
-      <h3>This page will: </h3>
+      <h2>My Favorites</h2>
       <ul>
-        <li>be the landing page for when 'favorites' button in header is clicked</li>
-        <li>REUSE CODE FROM MealPlan.jsx PAGE</li>
-        <li>Potentially save the clicked options as an array that can be locally stored fore future use</li>
-        <li>meals will be clickable, or there can be a button that displays on hover that redirects to the recipe page</li>
-        <li>display all favorited meals</li>
-        <li>allow users to delete favorite meals from the list (buttons appear on meal plan hover... reuse code from mymeals)</li>
-        <li>there is only one favorites list</li>
-        <li>anything else?</li>
+        {favorites.map(recipe =>
+        (
+        <li key={favorites.idMeal>}>{favorites.strMeal}</li>
+      
+        ))
+      };
       </ul>
-
-
-      {/* all components for Favorites page will go here */}
 
       
     </div>
