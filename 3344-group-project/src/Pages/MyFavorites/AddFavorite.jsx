@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 
 
-
+//this function is the decider of the user's interactions on the searchResults page 
+            //does the user want to add or remove ? 
+            // and it does so accordingly 
+            //this page also provides a button to do so 
 function AddFavorite({favorite})
 {
     //If the user redirects, e.g. leaves the page 
@@ -18,17 +21,17 @@ function AddFavorite({favorite})
 
     const isSelected=recipes.some(recipe=>recipe.idMeal==favorite.idMeal); //determines whether or not the recipe is in their list 
 
-    const handleClick=()=>  //main priority is to modify
+    const handleClick=()=>                                              //main priority is to modify
     {
-        const updatedArray= isSelected //if the button was previously selected aka the user already added it to the list 
-        ? //we know that the user is trying to remove it from their list (it was already added)
+        const updatedArray= isSelected                                 //if the button was previously selected aka the user already added it to the list 
+        ?                                                           //we know that the user is trying to remove it from their list (it was already added)
         recipes.filter(recipe=>recipe.idMeal!=favorite.idMeal)//we want to update the state of the array after removal
         :  [...recipes,favorite];
 
         setRecipes(updatedArray);
-       //we are gonna pass this to search results so that button will display
+                                                //we are gonna pass this to search results so that button will display
         localStorage.setItem("list", JSON.stringify(updatedArray)); //saving the array as a list within local storage 
-        //avoid asyoynchornous errors 
+                                                 //avoid asyoynchornous errors 
 
     };
  
