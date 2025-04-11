@@ -67,8 +67,6 @@ const SearchResults = () => {
     setFilteredResults(results); //if there are not filters correlated then we just return the original
   }
   else{
-    const originalResults=results;
-
     const filtered=results.filter(result=> //filtered is an array that contains 
       filters.includes(result.strCategory)
       //new array where for each recipe within the results array 
@@ -92,10 +90,10 @@ const SearchResults = () => {
       </div>
         <Filter getFilter={handleFilter}></Filter>
         {/* display results header only if there is a query and not loading */}
-    {query && !loading && (
-        <h3>{results.length} results for "{query}"</h3>
+    {query && !loading && filteredResults.length!=0 && (
+        <h3>{filteredResults.length} results for "{query}"</h3>
       )}
-    
+        
     <div className={styles.searchResultsContainer}>
       <ul className={styles.resultsList}>
         {
