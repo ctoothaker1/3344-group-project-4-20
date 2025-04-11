@@ -58,6 +58,6 @@ app.get('/api/random', async(request,response)=>{
 
 
 
-app.listen(5000, () => { //5000 is port
-    console.log("server is running on port 5000. Waiting for requests...");
+app.listen(5001, () => { //5001 is port
+    console.log("server is running on port 5001. Waiting for requests...");
 })
