@@ -3,13 +3,11 @@ html, body, #root {
     margin: 0;
     padding: 0;
 }
-
 .App {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* KEEPS FOOTER AT THE BOTTOM ON ALL PAGES*/
 }
-
 main {
-    flex-grow: 1;
+    flex-grow: 1; /*KEEPS FOOTER AT BOTTOM ON ALL PAGES that have 'main'*/
 }

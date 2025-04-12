@@ -1,10 +1,11 @@
 // this file contains a user's meal plans page layout
 import React from 'react';
+import styles from './MyPlans.module.css';
 
 const MyPlans = () => {
 
   return (
-    <div>
+    <main>
       <h1>MyPlans</h1>
       <p>a 'meal plan' is a selection of meals that the user assigns to specific days.</p>
       <h3>This page will: </h3>
@@ -19,7 +20,7 @@ const MyPlans = () => {
       {/* all components for mymeals will go here */}
 
       
-    </div>
+    </main>
   );
 
 }
