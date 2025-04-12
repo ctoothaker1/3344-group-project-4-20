@@ -2,7 +2,9 @@
 import React from 'react';
 import styles from './MyFavorites.module.css'
 import AddFavorites from './AddFavorite.jsx'
-import {  useState, useEffect } from 'react';
+import { FavoritesContext } from "../../components/useContext/useContext.jsx";
+import {useContext} from "react";
+import { Link } from "react-router-dom";
 
 const MyFavorites = () => {
 //essentially we are going to grab the local storage from 
@@ -11,27 +13,21 @@ const MyFavorites = () => {
 // and then we are going to allow the opportunity remove from the list
   // to do this we need 
 
-  const [favorites, setFavorites] = useState([]);
-  
-  useEffect(() => {
-    const saved = localStorage.getItem("list");
-    if (saved) {
-      setFavorites(JSON.parse(saved));
-    }
-  }, []);
+  const {favorites}=useContext(FavoritesContext);
 
   
   return (
     <div classname={styles.listContainer}>
       <h2>My Favorites</h2>
-      <ul>
-        {favorites.map(recipe =>
-        (
-        <li key={favorites.idMeal>}>{favorites.strMeal}</li>
-      
-        ))
-      };
-      </ul>
+   <ul>
+    {favorites.map(recipe=>
+    <li key={recipe.idMeal}>
+      <Link to={`/recipe/${recipe.idMeal}`} className={styles.linktext}>  //link to page 
+        {recipe.strMeal}
+      </Link>
+      </li>
+    )};
+   </ul>
 
       
     </div>

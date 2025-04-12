@@ -1,4 +1,4 @@
-import {createContext, useContext, useState, useEffect} from "react";
+import {createContext, useState, useEffect} from "react";
 
 export const FavoritesContext =createContext();
   //this will act as a shared memory channel
@@ -16,7 +16,7 @@ export const FavoritesContext =createContext();
     useEffect(() => {
         localStorage.setItem("list", JSON.stringify(favorites));
       }, [favorites]);
-
+        //provider is something we can use to pass the recipe list accross all components 
       return(
         <FavoritesContext.Provider value={{favorites,setFavorites}}>
         {children}

@@ -3,3 +3,7 @@ listContainer{
 
 
 }
+linktext{
+    text-decoration: none;
+    color: inherit;
+}
