@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Search from '../../components/Search/Search.jsx';
 import Filter from '../../components/Filter/Filter.jsx';
-import AddFavorites from '../../Pages/MyFavorites/AddFavorite.jsx'
+import AddFavorite from '../../Pages/MyFavorites/AddFavorite.jsx'
 import styles from './SearchResults.module.css'
 
 
@@ -111,7 +111,7 @@ const SearchResults = () => {
                   <h2>{result.strMeal}</h2>
                   <img src={result.strMealThumb} alt={result.strMeal} />
                 </Link>
-                <AddFavorites favorite={result}/>
+                <AddFavorite favorite={result}/>
               </li>
             ))
           ) : (
