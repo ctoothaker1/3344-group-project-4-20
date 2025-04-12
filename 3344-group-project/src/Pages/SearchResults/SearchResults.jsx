@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Search from '../../components/Search/Search.jsx';
 import Filter from '../../components/Filter/Filter.jsx';
-import AddFavorites from '../../components/MyFavorites/AddFavorites.jsx'
+import AddFavorites from '../../Pages/MyFavorites/AddFavorite.jsx'
 import styles from './SearchResults.module.css'
 
 
@@ -26,7 +26,7 @@ const SearchResults = () => {
   //API CALL with provided query
   const fetchSearchResults = async (query) => {
     setLoading(true); // fetching data, set loading to true
-    const endpoint = `http://localhost:5000/api/recipes?query=${query}`;
+    const endpoint = `http://localhost:5001/api/recipes?query=${query}`;
     console.log("✅ Final API endpoint:", endpoint);
     try
     {

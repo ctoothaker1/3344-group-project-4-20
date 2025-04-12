@@ -17,17 +17,17 @@ const MyFavorites = () => {
 
   
   return (
-    <div classname={styles.listContainer}>
+    <div className={styles.listContainer}>
       <h2>My Favorites</h2>
-   <ul>
-    {favorites.map(recipe=>
+      <ul>
+  {favorites.map(recipe => (
     <li key={recipe.idMeal}>
-      <Link to={`/recipe/${recipe.idMeal}`} className={styles.linktext}>  //link to page 
+      <Link to={`/recipe/${recipe.idMeal}`} className={styles.linktext}>
         {recipe.strMeal}
       </Link>
-      </li>
-    )};
-   </ul>
+    </li>
+  ))}
+  </ul>
 
       
     </div>
