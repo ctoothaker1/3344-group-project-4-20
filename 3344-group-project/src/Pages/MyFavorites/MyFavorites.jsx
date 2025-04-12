@@ -1,7 +1,6 @@
 // this file contains a user's meal plans page layout
 import React from 'react';
 import styles from './MyFavorites.module.css'
-import AddFavorites from './AddFavorite.jsx'
 import { FavoritesContext } from "../../components/useContext/useContext.jsx";
 import {useContext} from "react";
 import { Link } from "react-router-dom";
@@ -13,7 +12,7 @@ const MyFavorites = () => {
 // and then we are going to allow the opportunity remove from the list
   // to do this we need 
 
-  const {favorites}=useContext(FavoritesContext);
+  const { favorites }=useContext(FavoritesContext);
 
   
   return (
