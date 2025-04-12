@@ -43,7 +43,7 @@ const Filter=({getFilter})=>
         }
   
       }
-
+      //think about switching this into 
   return(
       <section className={styles.checkbox}>
       {dietOptions.map((diet) => (   //map function to iterate through
