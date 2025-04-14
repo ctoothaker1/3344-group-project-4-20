@@ -81,7 +81,6 @@ const Search = () => {
     //execute this when search is performed
     const handleSearchSubmit = (searchQuery) => {
         navigate(`/search/${searchQuery}`);
-      
     };
 
   return ( // display results under search bar

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 // import './App.css'
 import SearchBar from '../../components/Search/Search';
 import styles from './Home.module.css';
+import Featured from '../../components/FeaturedMeals/FeaturedMeals';
 
 function Home() {
 
@@ -36,8 +37,11 @@ function Home() {
                 </p>
               </div>
             </div>
+            <div className={styles.randomFeatured}>
+              <Featured/>
+            </div>
           </div>
-          {/* Brief paragraph about our site? */}
+
           {/* Featured Recipes (breakfasts??)*/}
           {/* Featured Recipes (lunches??)*/}
           {/* Featured Recipes (dinners??)*/}
