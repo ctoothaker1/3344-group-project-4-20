@@ -5,12 +5,12 @@
 import React from "react";
 import styles from "./FeaturedMeals.module.css";
 import { useState } from 'react';
-
+import { useNavigate } from "react-router-dom";
 
 const Featured = () => {
   const [loading, setLoading] = useState(false);
   const [meals, setMeals] = useState([]); // meals array to store meal data
-
+  const navigate = useNavigate(); // for routing to meal details page
 
   // helper function, get a single meal.
   const fetchRandomMeal = async () => {
@@ -58,7 +58,7 @@ const Featured = () => {
           <p>Loading...</p>
         ) : meals.length > 0 ? (
           meals.map((meal) => (
-            <div key={meal.idMeal} className={styles.mealCard}>
+            <div key={meal.idMeal} className={styles.mealCard} onClick={() => navigate(`/recipe/${meal.idMeal}`)}>
               <img src={meal.strMealThumb} alt={meal.strMeal} />
               <h3>{meal.strMeal}</h3>
               <p>{meal.strCategory}</p>
