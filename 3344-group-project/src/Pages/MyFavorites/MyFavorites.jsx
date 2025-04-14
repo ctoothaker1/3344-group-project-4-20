@@ -16,11 +16,12 @@ const MyFavorites = () => {
 
   
   return (
-    <div>
+    <div className={styles.container}>
       <h2>My Favorites</h2>
+      <hr className={styles.divider} />
       <ul>
   {favorites.map(recipe => (
-    <li key={recipe.idMeal}>
+    <li key={recipe.idMeal} className={styles.favoritesList}>
       <Link to={`/recipe/${recipe.idMeal}`} className={styles.linktext}>
         {recipe.strMeal}
       </Link>

@@ -3,3 +3,29 @@ linktext{
     text-decoration: none;
     color: inherit;
 }
+.container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+}
+.divider{
+    border:none;
+    height:5px;
+    background-color: black;
+    margin: 1px;
+    width:80%;
+
+
+}
+.favoritesList{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    list-style-type: none;
+    margin:5px;
+
+
+}
+
