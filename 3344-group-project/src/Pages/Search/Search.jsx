@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Search from '../../components/Search/Search.jsx';
+import SearchBar from '../../components/Search/Search.jsx';
 import Filter from '../../components/Filter/Filter.jsx';
-import AddFavorite from '../../Pages/MyFavorites/AddFavorite.jsx'
-import styles from './SearchResults.module.css'
+import AddFavorite from '../MyFavorites/AddFavorite.jsx'
+import styles from './Search.module.css'
 
 
-const SearchResults = () => {
+const Search = () => {
   const {query} = useParams();
   const [results, setResults] = useState([]);
   const [filters,setFilters] = useState([]);
@@ -37,7 +37,7 @@ const SearchResults = () => {
       
       const data = await response.json(); // set data to json API response ERRRRRROR
 
-      console.log("fetched data variable (searchresults.jsx): ",data); // returns error response from line 52 in server.mjs
+      console.log("fetched data variable (search.jsx): ",data); // returns error response from line 52 in server.mjs
       
       if (data.meals){//translate the data
         setResults(data.meals); 
@@ -49,7 +49,7 @@ const SearchResults = () => {
     }
     catch(error)
     {
-      console.error("error fetching recipes from API (in SearchResults.jsx)", error);
+      console.error("error fetching recipes from API (in Search.jsx)", error);
       // alert("error fetching recipes from API (in SearchResults.jsx)", error);
     }
     finally
@@ -88,7 +88,7 @@ const SearchResults = () => {
     <main>
       <div className={styles.mainContent}>
         <div className={styles.searchComponentContainer}>
-          <Search onSearchSubmit={handleSearchSubmit} />
+          <SearchBar onSearchSubmit={handleSearchSubmit} />
         </div>
         <Filter getFilter={handleFilter}></Filter>
         {/* display results header only if there is a query and not loading */}
@@ -125,4 +125,4 @@ const SearchResults = () => {
   );
 };
 
-export default SearchResults;
+export default Search;

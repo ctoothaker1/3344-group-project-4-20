@@ -4,7 +4,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // import siteLogo from '/siteLogo.svg'  -- we should make a logo
 // import './App.css'
-import Search from '../../components/Search/Search';
+import SearchBar from '../../components/Search/Search';
 import styles from './Home.module.css';
 
 function Home() {
@@ -25,7 +25,7 @@ function Home() {
             <div className={styles.homepageRow}>
               <div className={styles.homepageLeft}>
                 <h1 className={styles.homepageTitle}>This is the Homepage</h1>
-                <Search onSearchSubmit={handleSearchSubmit}/> {/* search component*/}
+                <SearchBar onSearchSubmit={handleSearchSubmit}/> {/* search component*/}
               </div>
               <div className={styles.homepageRight}>
                 <p className={styles.homepageDescription}>
