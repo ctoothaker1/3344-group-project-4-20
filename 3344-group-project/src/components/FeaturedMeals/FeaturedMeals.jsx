@@ -30,8 +30,8 @@ const Featured = () => {
 
   // fetch random meals as the component mounts
   React.useEffect(() => {
+    setLoading(true); 
     const fetchMeals = async () => {
-      setLoading(true); 
       try {
         const mealPromises = Array.from({ length: 6 }, fetchRandomMeal); // get 6 random meals.
         const mealsArray = await Promise.all(mealPromises);
@@ -51,6 +51,7 @@ const Featured = () => {
   return (
 
     <div className={styles.featuredContainer}> {/* horizontal by default, vertical in @media */}
+
       <h2>Featured Meals</h2>
       <div className={styles.featuredMeals}>
         {loading ? (
@@ -64,7 +65,7 @@ const Featured = () => {
             </div>
           ))
         ) : (
-          <p>No featured meals available.</p>
+          <p>Loading...</p>
         )}
       </div>
 
