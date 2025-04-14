@@ -12,8 +12,14 @@ const MyFavorites = () => {
 // and then we are going to allow the opportunity remove from the list
   // to do this we need 
 
-  const { favorites }=useContext(FavoritesContext);
+  const { favorites, setFavorites }=useContext(FavoritesContext);
+  const handleRemove =(e) =>
+  {
+    
+      const updated=favorites.filter(r=>r.idMeal!=e.target.value);
+      setFavorites(updated);
 
+  }
   
   return (
     <div className={styles.container}>
@@ -23,8 +29,11 @@ const MyFavorites = () => {
   {favorites.map(recipe => (
     <li key={recipe.idMeal} className={styles.favoritesList}>
       <Link to={`/recipe/${recipe.idMeal}`} className={styles.linktext}>
-        {recipe.strMeal}
+      {recipe.strMeal}
       </Link>
+      <button value={recipe.idMeal} onClick={handleRemove} className={styles.removeButton} >
+        Remove {recipe.strMeal}?
+        </button>
     </li>
   ))}
   </ul>
