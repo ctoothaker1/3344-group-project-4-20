@@ -2,6 +2,13 @@
 import React from 'react';
 import styles from './MyPlans.module.css';
 
+// MEAL PLANS in their simplest form are an array of idMeals, each idMeal is a recipe.
+// each meal plan needs a name, 7 days, meals that correspond to each day 
+// (some days can be empty if user has not assigned any meals to that day)
+// clicking a meal plan will route to /plan/planname where the detailed data is displayed
+// they can edit a plan on a separate page...? implementation TBD
+
+
 const MyPlans = () => {
 
   return (
