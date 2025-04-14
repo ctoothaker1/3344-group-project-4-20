@@ -11,18 +11,14 @@ const Featured = () => {
   const [loading, setLoading] = useState(false);
   const [meals, setMeals] = useState([]); // meals array to store meal data
 
+
+  // helper function, get a single meal.
   const fetchRandomMeal = async () => {
-    setLoading(true);
     const endpoint = `http://localhost:5001/api/random`;
     try{
       const response = await fetch(endpoint);
       const data = await response.json();
-      if (data.meals){
-        meals.push(data.meals); // set meals to the fetched data
-      }
-      else{
-        setMeals([])
-      }
+      return data.meals ? data.meals[0] : null; // return the first meal. only one.
     }
     catch(error){
       console.error("error fetching random meal (featuredmeals.jsx)",error);
@@ -32,17 +28,23 @@ const Featured = () => {
     }
   }
 
-  // Fetch random meals when the component mounts
+  // fetch random meals as the component mounts
   React.useEffect(() => {
-    setLoading(true); 
     const fetchMeals = async () => {
-      const mealPromises = Array.from({ length: 6 }, fetchRandomMeal); // Fetch 6 random meals
-      await Promise.all(mealPromises);
-      setMeals(meals); // Set the meals state to the fetched meals
+      setLoading(true); 
+      try {
+        const mealPromises = Array.from({ length: 6 }, fetchRandomMeal); // get 6 random meals.
+        const mealsArray = await Promise.all(mealPromises);
+        setMeals(mealsArray.filter(meal => meal !== null)); // filter null responses
+      } catch (error) {
+        console.error(error);
+      }
+      finally{
+        setLoading(false);
+      }
+      
     };
     fetchMeals();
-     // Set loading to false after fetching
-     setLoading(false);
   }, []);
 
 
