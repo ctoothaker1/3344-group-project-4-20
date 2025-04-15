@@ -27,7 +27,7 @@ const CreatePlanForm = ({ onCreate, onClose }) => {
           placeholder="Enter plan name"
           onChange={(e) => setPlanName(e.target.value)} // set plan name as it changes
         />
-        <button type="submit">Create plan</button>
+        <button type="submit">Save</button>
         <button type="button" onClick={onClose}>Cancel</button>
       </form>
     </div>
