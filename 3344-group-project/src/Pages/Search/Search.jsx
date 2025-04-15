@@ -89,7 +89,9 @@ const Search = () => {
         <div className={styles.searchComponentContainer}>
           <SearchBar onSearchSubmit={handleSearchSubmit} />
         </div>
-        <Filter getFilter={handleFilter}></Filter>
+        <div className={styles.filterComponentContainer}>
+          <Filter getFilter={handleFilter}></Filter> 
+        </div>
         {/* display results header only if there is a query and not loading */}
     {query && !loading && filteredResults.length!=0 && (
         <h3>{filteredResults.length} results for "{query}"</h3>
