@@ -12,7 +12,6 @@ import { useState } from 'react';
 // clicking a meal plan will route to /plan/planname where the detailed data is displayed
 // they can edit a plan on a separate page...? implementation TBD
 
-
 const MyPlans = () => {
 
   const { mealPlans, setMealPlans } = useContext(MealPlansContext);
@@ -53,6 +52,7 @@ const MyPlans = () => {
       unassigned: []
   };
   setMealPlans([...mealPlans, newPlan]); // add this NEW PLAN to existing plans
+  console.log(newPlan);
   setShowCreatePlanForm(false); // plan has been created, hide the form
   alert(`Plan ${planName} created!`); // notify user as a confirmation
 };

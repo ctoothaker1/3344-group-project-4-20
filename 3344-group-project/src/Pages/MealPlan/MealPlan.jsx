@@ -3,16 +3,16 @@ import React from 'react';
 import styles from './MealPlan.module.css';
 import {useContext} from "react";
 import { useParams } from 'react-router-dom';
-
+import { MealPlansContext } from "../../components/mealPlansContext/mealPlansContext.jsx";
 
 const MealPlan = () => {
 
   const daysOfWeek = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
-  const { name } = useParams(); // NAME from URL: /plan/:planname
+  const { planName } = useParams(); // NAME from URL: /plan/:planname
   const { mealPlans, setMealPlans } = useContext(MealPlansContext);
   // Find the plan by name - name is unique - must warn user if they attempt to name same
-  const plan = mealPlans.find(plan => plan.name === name);
+  const plan = mealPlans.find(plan => plan.name == planName);
 
   if (!plan) return <p>Meal plan not found.</p>;
 
