@@ -1,5 +1,6 @@
 import { FavoritesContext } from "../../components/useContext/useContext.jsx";
 import {useContext} from "react";
+import buttonStyles from "../../styles/Button.module.css";
 
 //this function is the decider of the user's interactions on the searchResults page 
             //does the user want to add or remove ? 
@@ -26,13 +27,18 @@ function AddFavorite({favorite})
         setFavorites(updatedArray);
         //we are gonna pass this to search results so that button will display                                    
     };
-        return(
-           <div>
-            <button type="button" onClick={handleClick} style={{
-                backgroundColor: isSelected ? "red" : "green",
-                color: "white"
-            }}>{isSelected? "Remove from List ": "Add to List"}</button>
-           </div>
-        )
+    
+    return (
+        <div>
+          <button 
+            type="button"
+            onClick={handleClick}
+            className={`${buttonStyles.btn} ${isSelected ? buttonStyles["btn-danger"] : ""}`}
+          >
+            {isSelected ? "Remove from List" : "Add to List"}
+          </button>
+        </div>
+      );
+      
 }
 export default AddFavorite;

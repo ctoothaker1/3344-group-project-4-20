@@ -1,0 +1,24 @@
+.btn {
+    background-color: #004d13e5;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #00691f;
+    transform: scale(1.02);
+}
+
+.btn-danger {
+    background-color: #b30000;
+}
+
+.btn-danger:hover {
+    background-color: #e60000;
+}
