@@ -2,10 +2,16 @@
 // displays all the users meal plans 
 // that have been created and stored in local storage.
 
+// DO NOT USE ----------------------------- changed file structure so this code is on the page, not in a component.
+
+
 import React, { useContext } from "react";
 import { MealPlansContext } from "../../components/mealPlansContext/mealPlansContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./Plans.module.css";
+
+
+
 
 const Plans = () => {
     const { mealPlans, setMealPlans } = useContext(MealPlansContext);
@@ -25,7 +31,7 @@ const Plans = () => {
     return ( // component UI
     <div className={styles.plansContainer}>
         <h1>My Meal Plans</h1>
-        <div className={styles.plans}>
+        <div className={styles.plans}> {/* loop through plans and display each */}
             {mealPlans.length > 0 ? (
             mealPlans.map(plan => (
                 <div key={plan.name} className={styles.planCard}>

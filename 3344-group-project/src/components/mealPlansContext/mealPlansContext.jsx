@@ -18,9 +18,9 @@ export const MealPlansProvider = ({ children }) => {
         localStorage.setItem("mealPlans", JSON.stringify(mealPlans));
       }, [mealPlans]);
 
-      return (
-        <MealPlansContext.Provider value={{ mealPlans, setMealPlans }}>
-          {children}
-        </MealPlansContext.Provider>
-      );
+    return (
+    <MealPlansContext.Provider value={{ mealPlans, setMealPlans }}>
+        {children}
+    </MealPlansContext.Provider>
+    );
 };
