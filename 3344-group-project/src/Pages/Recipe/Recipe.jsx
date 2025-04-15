@@ -8,15 +8,18 @@ import RecipeToolbar from '../../components/RecipeToolbar/RecipeToolbar';
 const Recipe = () => {
     const {idMeal} = useParams();
     const [recipe, setRecipe] = useState(null)
+    const [isFavorite, setFavorite] = useState(false);
+    const [favoritesList, setFavoritesList] = useState([]);
+    const [mealPlan, setMealPlan] = useState([]);
 
-    console.log("idmeal: ",idMeal);
+    // console.log("idmeal: ",idMeal);
     const fetchRecipeDetails = async () => {
         try {
-            console.log("idmeal: ",idMeal);
+            // console.log("idmeal: ",idMeal);
             const response = await fetch(`http://localhost:5001/api/recipe/${idMeal}`);
             const data = await response.json();
             setRecipe(data.meals[0]); // only one result based on id, take first element in json
-            console.log(data.meals);
+            // console.log(data.meals);
         }
         catch (error) {
             console.error("error fetching recipe details", error);
@@ -29,22 +32,35 @@ const Recipe = () => {
 
     if (!recipe) return <p>Loading...</p>; /* if recipe has not been retrieved from api, display loading... */
 
+    // function to toggle favorite from standalone recipe page.
+
+    const toggleFavorite = () => {
+        if (!isFavorite) {
+            setFavoritesList(existingList => [...existingList, recipe]);
+        } else {
+            setFavoritesList(existingList => existingList.filter(item => item.name !== recipe.name));
+        }
+        setFavorite(existingList => !existingList);
+    };
+
+
+    // function to add a recipe to a meal pan
+    const addToMealPlan = () => {
+       // get selected plan name from dropdown, 
+       // select day here?
+      };
+
+
+
+
+
     return (
-// <div>
-// <h1>Recipe</h1>
-// <p>a 'recipe' is a single meal</p>
-// <h3>This page will: </h3>
-// <ul>
-//     <li>Display a recipe after the user clicks something on a separate page to 'view details' about it</li>
-//     <li>Meal details are displayed in the components based on the idMeal parameter in the URL</li>
-//     <ul>
-//         <li>these details include: instructions, ingredients, measurements for ingredients, and more if we want.</li>
-//     </ul>
-//     <li>anything else?</li>
-// </ul>
-// </div>
     <main className={styles.mainContent}>
-        <RecipeToolbar recipe={recipe} /> 
+        <RecipeToolbar recipe={recipe} 
+        isFavorite={isFavorite}
+        onAddToFavorites={toggleFavorite}
+        onAddToMealPlan={addToMealPlan}
+        /> 
         <div className={styles.recipeContainer}>
             <div className={styles.leftContainer}>
                 <h1>{recipe.strMeal}</h1>
