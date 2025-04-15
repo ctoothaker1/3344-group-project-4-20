@@ -3,6 +3,8 @@ import styles from './MyPlans.module.css';
 import React, { useContext } from "react";
 import { MealPlansContext } from "../../components/mealPlansContext/mealPlansContext";
 import { useNavigate } from "react-router-dom";
+import CreatePlanForm from '../../components/CreatePlanForm/CreatePlanForm';
+import { useState } from 'react';
 
 // MEAL PLANS in their simplest form are an array of idMeals, each idMeal is a recipe.
 // each meal plan needs a name, 7 days, meals that correspond to each day 
@@ -15,6 +17,8 @@ const MyPlans = () => {
 
   const { mealPlans, setMealPlans } = useContext(MealPlansContext);
   const navigate = useNavigate();
+  //controls the visibility of the crete plan form. triggered by button
+  const [showCreatePlanForm, setShowCreatePlanForm] = useState(false);
 
   const handlePlanClick = (plan) => {
     // go to detailed plan view
@@ -27,9 +31,32 @@ const MyPlans = () => {
     setMealPlans(updatedPlans);
   };
 
-  const handleCreatePlan = () =>{
+  const handleCreatePlanClick = () =>{
     // display component to create a new plan ("createplan")
+    setShowCreatePlanForm(true); // dynamically display form when clicked
+    // maybe hide other content? we will see once styled.
   };
+
+  //JSON structure for a brand new meal plan. this is what it will look like in local storage.
+  const handleCreatePlan = (planName) => {
+    const newPlan = {
+      name: planName,
+      days: {
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+        sunday: []
+      },
+      unassigned: []
+  };
+  setMealPlans([...mealPlans, newPlan]); // add this NEW PLAN to existing plans
+  setShowCreatePlanForm(false); // plan has been created, hide the form
+  alert(`Plan ${planName} created!`); // notify user as a confirmation
+};
+
 
   return (
     <main>
@@ -59,10 +86,16 @@ const MyPlans = () => {
                   ) : (
                   <div className={styles.noPlans}>
                     <p>No meal plans have been created. Create a new one!</p>
-                    <button onClick={() => handleCreatePlan()}>Create a Plan</button>
+                    <button onClick={() => handleCreatePlanClick()}>Create a Plan</button>
                   </div>
                   )}
               </div>
+              {showCreatePlanForm && (
+          <CreatePlanForm 
+            onCreate={handleCreatePlan} 
+            onClose={() => setShowCreatePlanForm(false)}
+          />
+        )}
           </div>
       
     </main>
