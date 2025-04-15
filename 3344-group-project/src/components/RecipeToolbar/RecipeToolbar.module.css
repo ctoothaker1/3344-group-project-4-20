@@ -1,0 +1,26 @@
+.toolbar {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2) inset;
+    padding: 15px 20px;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.toolbar button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #004d13e5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.toolbar button:hover {
+    background-color: #00691f;
+}

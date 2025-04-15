@@ -3,6 +3,7 @@
 import React, {useEffect,useState} from 'react';
 import {useParams} from 'react-router-dom'; // this is used to get the idMeal from the URL
 import styles from './Recipe.module.css';
+import RecipeToolbar from '../../components/RecipeToolbar/RecipeToolbar';
 
 const Recipe = () => {
     const {idMeal} = useParams();
@@ -43,26 +44,28 @@ const Recipe = () => {
 // </ul>
 // </div>
     <main className={styles.mainContent}>
-        <p>add navbar at top</p>
-        <div className={styles.leftContainer}>
-            <h1>{recipe.strMeal}</h1>
-            <img src={recipe.strMealThumb} alt={recipe.strMeal} className={styles.recipeImg}/>
-        </div>
-        <div className={styles.rightContainer}>
-            <div className = {styles.denseInfo}>
-                <div className={styles.denseInfoItem}>
-                <h3>Category </h3><p>{recipe.strCategory}</p>
-                </div>
-                <div className={styles.denseInfoItem}>
-                <h3>Style </h3><p>{recipe.strArea}</p>
-                </div>
-                {/* <div className={styles.denseInfoItem}>
-                <h3>Category: </h3><p>{recipe.strCategory}</p>
-                </div> */}
+        <RecipeToolbar recipe={recipe} /> 
+        <div className={styles.recipeContainer}>
+            <div className={styles.leftContainer}>
+                <h1>{recipe.strMeal}</h1>
+                <img src={recipe.strMealThumb} alt={recipe.strMeal} className={styles.recipeImg}/>
             </div>
-            <h2>Instructions:</h2>
-            <p>{recipe.strInstructions}</p>
-            {/* embed strYoutube??? */}
+            <div className={styles.rightContainer}>
+                <div className = {styles.denseInfo}>
+                    <div className={styles.denseInfoItem}>
+                    <h3>Category </h3><p>{recipe.strCategory}</p>
+                    </div>
+                    <div className={styles.denseInfoItem}>
+                    <h3>Style </h3><p>{recipe.strArea}</p>
+                    </div>
+                    {/* <div className={styles.denseInfoItem}>
+                    <h3>Category: </h3><p>{recipe.strCategory}</p>
+                    </div> */}
+                </div>
+                <h2>Instructions:</h2>
+                <p>{recipe.strInstructions}</p>
+                {/* embed strYoutube??? */}
+            </div>
         </div>
     </main>
   );

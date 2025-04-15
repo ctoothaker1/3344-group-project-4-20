@@ -1,9 +1,13 @@
 .mainContent{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
+}
+.recipeContainer{
+    margin-top: 10px;
+    display: flex;
 }
 .leftContainer{
     display: flex;
