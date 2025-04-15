@@ -21,6 +21,7 @@
     /* margin-left: -20px; center items */
 }
 .resultItem{
+    position: relative;
     background-color: white;
     display: flex;
     align-items: center;
@@ -54,6 +55,20 @@
     transition: filter 0.5s ease;
     transform: scale(1.001);
     transition: transform 0.3s ease;
+}
+
+
+.favoriteButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.resultItem:hover .favoriteButton {
+    opacity: 1;
 }
 
 @media screen and (max-width: 480px){

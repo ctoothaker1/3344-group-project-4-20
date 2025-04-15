@@ -108,11 +108,13 @@ const Search = () => {
           ) : filteredResults.length > 0 ? (
             filteredResults.map((result) => (
               <li key={result.idMeal} className={styles.resultItem}>
+                <div className={styles.favoriteButton}>
+                  <AddFavorite favorite={result}/>
+                </div>
                 <Link to={`/recipe/${result.idMeal}`} className={styles.resultLink}>
                   <h2>{result.strMeal}</h2>
                   <img src={result.strMealThumb} alt={result.strMeal} />
                 </Link>
-                <AddFavorite favorite={result}/>
               </li>
             ))
           ) : (
