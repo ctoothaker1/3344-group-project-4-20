@@ -21,10 +21,14 @@ const MyPlans = () => {
     navigate(`/plan/${plan.name}`);
   };
 
-  const handleDeletePlan = (planId) => {
+  const handleDeletePlan = (planName) => {
     // filter out plan that was deleted so it is not displayed
-    const updatedPlans = mealPlans.filter(plan => plan.id !== planId);
+    const updatedPlans = mealPlans.filter(plan => plan.name !== planName);
     setMealPlans(updatedPlans);
+  };
+
+  const handleCreatePlan = () =>{
+    // display component to create a new plan ("createplan")
   };
 
   return (
@@ -49,11 +53,14 @@ const MyPlans = () => {
                       <h3>{plan.name}</h3>
                       {/* OTHER PLAN DETAILS */}
                       <button onClick={() => handlePlanClick(plan)}>View Plan</button>
-                      <button onClick={() => handleDeletePlan(plan.id)}>Delete</button>
+                      <button onClick={() => handleDeletePlan(plan.name)}>Delete</button>
                       </div>
                   ))
                   ) : (
-                  <p>No meal plans have been created. Create a new one!</p>
+                  <div className={styles.noPlans}>
+                    <p>No meal plans have been created. Create a new one!</p>
+                    <button onClick={() => handleCreatePlan()}>Create a Plan</button>
+                  </div>
                   )}
               </div>
           </div>
