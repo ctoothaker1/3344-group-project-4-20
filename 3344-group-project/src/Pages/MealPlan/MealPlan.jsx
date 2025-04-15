@@ -1,4 +1,4 @@
-// this file will be used when a user 
+// this file will be used when a user clicks  a meal plan
 import React from 'react';
 import styles from './MealPlan.module.css';
 
