@@ -97,32 +97,40 @@ const Search = () => {
         <h3>{filteredResults.length} results for "{query}"</h3>
       )}
         
-    <div className={styles.searchResultsContainer}>
-      <ul className={styles.resultsList}>
-        {
-          // if there is no query, prompt the user to search first.
+        <div className={styles.searchResultsContainer}>
+          {
           !query ? (
-            <p>Search for a recipe!</p>
-          ) : loading ? (
-            <p>Loading...</p>
-          ) : filteredResults.length > 0 ? (
-            filteredResults.map((result) => (
-              <li key={result.idMeal} className={styles.resultItem}>
-                <div className={styles.favoriteButton}>
-                  <AddFavorite favorite={result}/>
-                </div>
-                <Link to={`/recipe/${result.idMeal}`} className={styles.resultLink}>
-                  <h2>{result.strMeal}</h2>
-                  <img src={result.strMealThumb} alt={result.strMeal} />
-                </Link>
-              </li>
-            ))
-          ) : (
-            <p>No results for "{query}".</p>
-          )
-        }
-          </ul>
-        </div>
+          <p>Search for a recipe!</p>
+        ) : loading ? (
+        <p>Loading...</p>
+      ) : filteredResults.length > 0 ? (
+      <div className={styles.resultsList}>
+        {filteredResults.map((result) => (
+          <div key={result.idMeal} className={styles.resultItem}>
+            <div className={styles.textContainer}>
+                <h2 className={styles.resultTitle}>{result.strMeal}</h2>
+            </div>   
+
+            <Link to={`/recipe/${result.idMeal}`} className={styles.resultLink}>
+            <img 
+              src={result.strMealThumb} 
+              alt={result.strMeal} 
+              className={styles.resultImage}
+              />                        
+            </Link>
+            
+            <div className={styles.favoriteButton}>
+              <AddFavorite favorite={result} />
+            </div>
+            
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p>No results for "{query}".</p>
+    )
+  }
+</div>
     </div>
   </main>
   );
