@@ -28,13 +28,17 @@ const RecipeToolbar = ({
     return (
       <div className={styles.toolbar}>
         <button 
-          onClick={onAddToFavorites}>
+          onClick={onAddToFavorites}
+          className={ /* change red when favorited, similar to search */
+            isFavorite ? `${styles.favoriteBtn} ${styles.favorited}`
+            : styles.favoriteBtn
+          }>
             {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
         </button>
 
       {/* show 'add to plan' by default */}
       {!showPlanForm && (
-        <button onClick={onAddToPlanClick} className={styles.addToPlanBtn}>
+        <button onClick={onAddToPlanClick} className={styles.nonFavoriteButton}>
           Add to Plan
         </button>
       )}
@@ -70,7 +74,7 @@ const RecipeToolbar = ({
       )}
       {/* If no meal plans exist, show 'create plan' button */}
       {showPlanForm && mealPlans.length === 0 && (
-        <button onClick={() => (onCreatePlanClick())}>
+        <button onClick={() => (onCreatePlanClick()) } className={styles.nonFavoriteButton}>
           Create a Plan
         </button>
       )}

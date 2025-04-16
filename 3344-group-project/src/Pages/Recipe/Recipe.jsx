@@ -38,20 +38,30 @@ const Recipe = () => {
         fetchRecipeDetails();
     }, [idMeal]);
 
+    // constantly sync isFavorite when either 'favorites' or 'recipe' changes
+    // so it doesn't keep adding to favorites list over and over.
+    useEffect(() => {
+        if (!recipe) return;
+        setFavorite(favorites.some(item => item.idMeal === recipe.idMeal));
+      }, [favorites, recipe]);
+
     if (!recipe) return <p>Loading...</p>; /* if recipe has not been retrieved from api, display loading... */
 
     // function to toggle favorite from standalone recipe page. CSS TODO
     const toggleFavorite = () => {
         if (!isFavorite) {
-            setFavorites(currentFavorites => [...currentFavorites, recipe]);
-            
+          // if added already, return currentfavorites. if not, add recipe and return updated favs lst
+          setFavorites(currentFavorites => {
+            if (currentFavorites.some(item => item.idMeal === recipe.idMeal)) return currentFavorites;
+            return [...currentFavorites, recipe];
+          });
         } else {
-            setFavorites(currentFavorites => currentFavorites.filter(item => item.name !== recipe.strMeal));
+          // remove the meal from favorites list, since it is being removed.
+          setFavorites(currentFavorites => currentFavorites.filter(item => item.idMeal !== recipe.idMeal));
         }
-        setFavorite(existingList => !existingList);
-        console.log('add to favorites btn clicked, adding ',recipe.strMeal, " to favorites");
-        
-    };
+        // set prop to opposite.
+        setFavorite(prevBoolValue => !prevBoolValue);
+      };
 
     const handleAddToPlanClick = () => {
         setShowPlanForm(true);
@@ -98,8 +108,8 @@ const Recipe = () => {
           });
           setMealPlans(updatedMealPlans);
           localStorage.setItem("mealPlans", JSON.stringify(updatedMealPlans));
-          console.log(`${recipe.strMeal} successfully added to ${selectedMealPlan} on ${day}`);
-          // hide dropdowns to add to a plan and day, optionally alert the user that recipe has been added.
+          alert(`${recipe.strMeal} has been added to '${selectedMealPlan}' on ${day}`);
+          // hide dropdowns to add to a plan and day, alert the user that recipe has been added.
           setShowPlanForm(false);
     };
 
@@ -117,6 +127,7 @@ const Recipe = () => {
             onAddToPlanClick={handleAddToPlanClick}
             onCreatePlanClick={handleCreatePlanClick}
         /> 
+
         <div className={styles.recipeContainer}>
             <div className={styles.leftContainer}>
                 <h1>{recipe.strMeal}</h1>
