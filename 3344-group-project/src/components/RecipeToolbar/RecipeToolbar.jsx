@@ -4,12 +4,27 @@ import styles from "./RecipeToolbar.module.css";
 const RecipeToolbar = ({
     isFavorite,
     onAddToFavorites,
-    onAddToMealPlan,
     mealPlans,
+    showPlanForm,
     selectedMealPlan,
-    onMealPlanSelect
+    onMealPlanSelect,
+    selectedDay,
+    onDaySelect,
+    onAddToPlanClick
   }) => {
     console.log("meal plans (toolbar): ", mealPlans)
+
+    const dayAssignments = [
+      "unassigned",
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday"
+    ];
+
 
     return (
       <div className={styles.toolbar}>
@@ -18,19 +33,47 @@ const RecipeToolbar = ({
             {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
         </button>
 
-        {/* <button onClick={onAddToMealPlan}>Add to Meal Plan</button> */}
-        {/*dropdown to select plan vvvvv*/}
-        <select
-        value={selectedMealPlan}
-        onChange={onMealPlanSelect}
-        className={styles.mealPlanSelect}
-      >
-        {mealPlans.map(plan => (
-          <option key={plan.name} value={plan.name}>
-            {plan.name}
-          </option>
-        ))}
-      </select>
+      {/* show 'add to plan' by default */}
+      {!showPlanForm && (
+        <button onClick={onAddToPlanClick} className={styles.addToPlanBtn}>
+          Add to Plan
+        </button>
+      )}
+
+      {/* If meal plans exist and 'add to plan' button clicked, show the two dropdowns */}
+      {showPlanForm && mealPlans.length > 0 && (
+        <div className={styles.planForm}>
+          <select
+            value={selectedMealPlan}
+            onChange={onMealPlanSelect}
+            className={styles.mealPlanSelect}
+          >
+            {mealPlans.map(plan => (
+              <option key={plan.name} value={plan.name}>
+                {plan.name}
+              </option>
+            ))}
+          </select>
+          <select
+            value={selectedDay}
+            onChange={onDaySelect}
+            className={styles.daySelect}
+          >
+            <option value="">Select Day</option>
+            {dayAssignments.map(day => (
+              <option key={day} value={day}>
+                {day.charAt(0).toUpperCase() + day.slice(1)}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      {/* If no meal plans exist, show 'create plan' button */}
+      {showPlanForm && mealPlans.length === 0 && (
+        <button onClick={() => (window.location.href = '/plans')} className={styles.createPlanBtn}>
+          Create a Plan
+        </button>
+      )}
       </div>
     );
 }

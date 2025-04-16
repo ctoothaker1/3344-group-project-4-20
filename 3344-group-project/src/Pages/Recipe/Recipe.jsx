@@ -1,25 +1,33 @@
 // this file contains the structure for the components that will display 
 // when a meal is clicked - this is the detailed recipe page.
 import React, {useEffect,useState, useContext} from 'react';
-import {useParams} from 'react-router-dom'; // this is used to get the idMeal from the URL
+import {useParams, useNavigate} from 'react-router-dom'; // this is used to get the idMeal from the URL
 import styles from './Recipe.module.css';
 import RecipeToolbar from '../../components/RecipeToolbar/RecipeToolbar';
 import { MealPlansContext } from "../../components/mealPlansContext/mealPlansContext.jsx";
+import { FavoritesContext } from '../../components/useContext/useContext.jsx';
 
 const Recipe = () => {
     const {idMeal} = useParams();
+    const navigate = useNavigate();
     const [recipe, setRecipe] = useState(null)
     const [isFavorite, setFavorite] = useState(false);
-    const [favoritesList, setFavoritesList] = useState([]);
+    const { favorites, setFavorites }=useContext(FavoritesContext);
     const { mealPlans, setMealPlans } = useContext(MealPlansContext); // get locally stored meal plans
 
-    const [selectedMealPlan, setSelectedMealPlan] = useState([]);
+    // states to handle dropdowns in toolbar
+    const [selectedMealPlan, setSelectedMealPlan] = useState("");
+    const [selectedDay, setSelectedDay] = useState("");
+    // state for toggling dropdown visability
+    const [showPlanForm, setShowPlanForm] = useState(false);
+
 
     const fetchRecipeDetails = async () => {
         try {
             const response = await fetch(`http://localhost:5001/api/recipe/${idMeal}`);
             const data = await response.json();
             setRecipe(data.meals[0]); // only one result based on id, take first element in json
+            console.log("data.meals 0: ",data.meals[0]);
         }
         catch (error) {
             console.error("error fetching recipe details", error);
@@ -35,35 +43,80 @@ const Recipe = () => {
     // function to toggle favorite from standalone recipe page. CSS TODO
     const toggleFavorite = () => {
         if (!isFavorite) {
-            setFavoritesList(currentFavorites => [...currentFavorites, recipe]);
+            setFavorites(currentFavorites => [...currentFavorites, recipe]);
+            
         } else {
-            setFavoritesList(currentFavorites => currentFavorites.filter(item => item.name !== recipe.name));
+            setFavorites(currentFavorites => currentFavorites.filter(item => item.name !== recipe.strMeal));
         }
         setFavorite(existingList => !existingList);
-        console.log('add to favorites btn clicked');
+        console.log('add to favorites btn clicked, adding ',recipe.strMeal, " to favorites");
+        
     };
 
-    const addRecipeToMealPlan = () => {
-        console.log(recipe, "should be added to ", selectedMealPlan)
+    const handleAddToPlanClick = () => {
+        if (mealPlans.length === 0){
+            // display create plan button in 'add to plan' button's place.
+            // navigate to meal plans page if create plan button clicked.
+            //  toggle create new plan component visability on /myplans
+            navigate('/myplans');
+        } else{
+            setShowPlanForm(true);
+            // set a default plan in dropdown
+            setSelectedMealPlan(mealPlans[0].name);
+        }
     }
 
     // dropdown selection changed vvvvv
     const handleMealPlanSelect = (event) => {
-        setSelectedMealPlan(Number(event.target.value));
+        setSelectedMealPlan(event.target.value);
       };
 
 
+    // handle day selection changed
+    const handleDaySelect = (event) => {
+        const day = event.target.value;
+        setSelectedDay(day);
+        addRecipeToMealPlan(day);
+    }
+    // add recipe to meal plan, given day and using selectedMealPlan
+    const addRecipeToMealPlan = (day) => {
+        if (!selectedMealPlan || !day) return;
+        console.log(recipe, "should be added to ", selectedMealPlan, day);
+        const updatedMealPlans = mealPlans.map(plan => {
+            if (plan.name === selectedMealPlan) {
+              if (day === "unassigned") {
+                return { ...plan, unassigned: [...plan.unassigned, recipe.idMeal] };
+              } else {
+                return {
+                  ...plan,
+                  days: {
+                    ...plan.days,
+                    [day]: plan.days[day] ? [...plan.days[day], recipe.idMeal] : [recipe.idMeal]
+                  }
+                };
+              }
+            }
+            return plan;
+          });
+          setMealPlans(updatedMealPlans);
+          localStorage.setItem("mealPlans", JSON.stringify(updatedMealPlans));
+          console.log(`${recipe.strMeal} successfully added to ${selectedMealPlan} on ${day}`);
+          // hide dropdowns to add to a plan and day, optionally alert the user that recipe has been added.
+          setShowPlanForm(false);
+    };
 
     return (
     <main className={styles.mainContent}>
         <RecipeToolbar /* pass all necessary properties */
-        recipe={recipe} 
-        isFavorite={isFavorite}
-        onAddToFavorites={toggleFavorite}
-        onAddToMealPlan={addRecipeToMealPlan}
-        mealPlans={mealPlans}
-        selectedMealPlanId={selectedMealPlan}
-        onMealPlanSelect={handleMealPlanSelect}
+            isFavorite={isFavorite}
+            onAddToFavorites={toggleFavorite}
+            mealPlans={mealPlans}
+            showPlanForm={showPlanForm}
+            selectedMealPlan={selectedMealPlan}
+            onMealPlanSelect={handleMealPlanSelect}
+            selectedDay={selectedDay}
+            onDaySelect={handleDaySelect}
+            onAddToPlanClick={handleAddToPlanClick}
         /> 
         <div className={styles.recipeContainer}>
             <div className={styles.leftContainer}>
