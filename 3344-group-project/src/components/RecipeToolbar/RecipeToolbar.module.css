@@ -11,7 +11,12 @@
     align-items: center;
     gap: 10px;
 }
-.toolbar button {
+.planForm{
+    display: flex;
+    gap:10px;
+}
+.nonFavoriteButton,
+.toolbar select{
     padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
@@ -20,7 +25,29 @@
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+
 }
-.toolbar button:hover {
+.toolbar select:hover,
+.nonFavoriteButton:hover{
     background-color: #00691f;
+}
+.favoriteBtn{
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #004d13e5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: #004d13e5;
+}
+.favoriteBtn:hover{
+    background-color: #00691f;
+}
+.favorited{
+    background-color: darkred;
+}   
+.favorited:hover{
+    background-color: #e00;
 }

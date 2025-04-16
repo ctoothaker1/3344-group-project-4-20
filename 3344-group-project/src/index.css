@@ -8,7 +8,9 @@ body{
 html {
   scroll-behavior: smooth;
 }
-
+input, button, select{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 /* increase font size for phone screens*/ 
 /*@media screen and (max-width: 375px) { 
   body {

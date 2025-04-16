@@ -48,8 +48,7 @@ const MyPlans = () => {
         friday: [],
         saturday: [],
         sunday: []
-      },
-      unassigned: []
+      }
   };
   setMealPlans([...mealPlans, newPlan]); // add this NEW PLAN to existing plans
   console.log(newPlan);
@@ -73,20 +72,22 @@ const MyPlans = () => {
 
       <div className={styles.plansContainer}>
               <h1>My Meal Plans</h1>
+              <hr className={styles.divider} />
               <div className={styles.plans}> {/* loop through plans and display each */}
                   {mealPlans.length > 0 ? (
                   mealPlans.map(plan => (
                       <div key={plan.name} className={styles.planCard}>
-                      <h3>{plan.name}</h3>
-                      {/* OTHER PLAN DETAILS */}
-                      <button onClick={() => handlePlanClick(plan)}>View Plan</button>
-                      <button onClick={() => handleDeletePlan(plan.name)}>Delete</button>
+                        <h3>{plan.name}</h3>
+                        {/* OTHER PLAN DETAILS */}
+                        <div className={styles.cardButtons}>
+                          <button onClick={() => handlePlanClick(plan)}>View Plan</button>
+                          <button onClick={() => handleDeletePlan(plan.name)}>Delete</button>
+                        </div>
                       </div>
                   ))
                   ) : (
                   <div className={styles.noPlans}>
-                    <p>No meal plans have been created. Create a new one!</p>
-                    <button onClick={() => handleCreatePlanClick()}>Create a Plan</button>
+                    <p>No meal plans have been created. Click 'Create a Plan' to create a new one!</p>
                   </div>
                   )}
               </div>
@@ -96,6 +97,7 @@ const MyPlans = () => {
             onClose={() => setShowCreatePlanForm(false)}
           />
         )}
+            <button onClick={() => handleCreatePlanClick()} className={styles.createPlanButton}>Create a Plan</button>
           </div>
       
     </main>
