@@ -10,7 +10,8 @@ const RecipeToolbar = ({
     onMealPlanSelect,
     selectedDay,
     onDaySelect,
-    onAddToPlanClick
+    onAddToPlanClick,
+    onCreatePlanClick
   }) => {
     console.log("meal plans (toolbar): ", mealPlans)
 
@@ -46,6 +47,7 @@ const RecipeToolbar = ({
             onChange={onMealPlanSelect}
             className={styles.mealPlanSelect}
           >
+            <option value="" >Select Plan</option>
             {mealPlans.map(plan => (
               <option key={plan.name} value={plan.name}>
                 {plan.name}
@@ -68,7 +70,7 @@ const RecipeToolbar = ({
       )}
       {/* If no meal plans exist, show 'create plan' button */}
       {showPlanForm && mealPlans.length === 0 && (
-        <button onClick={() => (window.location.href = '/plans')} className={styles.createPlanBtn}>
+        <button onClick={() => (onCreatePlanClick())}>
           Create a Plan
         </button>
       )}

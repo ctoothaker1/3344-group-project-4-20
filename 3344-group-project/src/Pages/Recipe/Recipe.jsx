@@ -54,16 +54,14 @@ const Recipe = () => {
     };
 
     const handleAddToPlanClick = () => {
-        if (mealPlans.length === 0){
-            // display create plan button in 'add to plan' button's place.
-            // navigate to meal plans page if create plan button clicked.
-            //  toggle create new plan component visability on /myplans
-            navigate('/myplans');
-        } else{
-            setShowPlanForm(true);
-            // set a default plan in dropdown
+        setShowPlanForm(true);
+        if (mealPlans.length > 0){
             setSelectedMealPlan(mealPlans[0].name);
         }
+    }
+    // create plan button clicked in recipe toolbar. only shows when 0 plans
+    const handleCreatePlanClick = () => {
+        navigate('/myplans');
     }
 
     // dropdown selection changed vvvvv
@@ -107,7 +105,7 @@ const Recipe = () => {
 
     return (
     <main className={styles.mainContent}>
-        <RecipeToolbar /* pass all necessary properties */
+        <RecipeToolbar /* pass all necessary properties/callbacks */
             isFavorite={isFavorite}
             onAddToFavorites={toggleFavorite}
             mealPlans={mealPlans}
@@ -117,6 +115,7 @@ const Recipe = () => {
             selectedDay={selectedDay}
             onDaySelect={handleDaySelect}
             onAddToPlanClick={handleAddToPlanClick}
+            onCreatePlanClick={handleCreatePlanClick}
         /> 
         <div className={styles.recipeContainer}>
             <div className={styles.leftContainer}>
