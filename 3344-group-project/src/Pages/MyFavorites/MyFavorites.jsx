@@ -21,22 +21,35 @@ const MyFavorites = () => {
   
   return (
     <div className={styles.container}>
-      <h2>My Favorites</h2>
+      <h2 className={styles.pageTitle}>My Favorites</h2>
       <hr className={styles.divider} />
-      <ul>
-        {favorites.map(recipe => (
-          <li 
-          key={recipe.idMeal}
-          className={styles.favoritesList}>
-            <Link to={`/recipe/${recipe.idMeal}`} className={styles.linktext}>
-            {recipe.strMeal}
-            </Link>
-            <button value={recipe.idMeal} onClick={handleRemove} className={styles.removeButton} >
-              Remove {recipe.strMeal}?
+      {favorites.length === 0 ? (
+        <p className={styles.emptyMsg}>No favorite recipes yet. Go find something tasty!</p>
+      ) : (
+        <div className={styles.favoritesGrid}>
+          {favorites.map((recipe) => (
+            <div key={recipe.idMeal} className={styles.favoriteCard}>
+              <Link to={`/recipe/${recipe.idMeal}`} className={styles.recipeLink}>
+                <img
+                  src={recipe.strMealThumb}
+                  alt={recipe.strMeal}
+                  className={styles.recipeImage}
+                />
+                <h3 className={styles.recipeTitle}>{recipe.strMeal}</h3>
+              </Link>
+              <button
+                value={recipe.idMeal}
+                onClick={handleRemove}
+                className={styles.removeButton}
+              >
+                Remove
               </button>
-          </li>
-        ))}
-      </ul>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
-  );}
+  );
+};
+
 export default MyFavorites;
