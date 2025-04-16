@@ -16,20 +16,31 @@ const MealPlan = () => {
 
   if (!plan) return <p>Meal plan not found.</p>;
 
+
+
+
   // remove meal plan from specific day
-  const handleRemoveMeal = (day, mealId) => { 
+  // and update meal plan in the context object (local storage) after removal
+  const handleRemoveMeal = (day, idMeal) => {
     const updatedPlan = {
       ...plan,
       days: {
         ...plan.days,
-        [day]: plan.days[day].filter(meal => meal.idMeal !== mealId)
-      }
+        [day]: plan.days[day].filter(meal => meal.idMeal !== idMeal)
+      },
+      unassigned: day === "unassigned"
+        ? plan.unassigned.filter(meal => meal.idMeal !== idMeal)
+        : plan.unassigned
     };
-    // update meal plan in the context object (local storage) after removal
-    const updatedPlans = mealPlans.map(p => (p.id === id ? updatedPlan : p));
-    setMealPlans(updatedPlans);
-  };
 
+    const updatedPlans = mealPlans.map(p =>
+      p.name === planName ? updatedPlan : p
+    );
+  
+    setMealPlans(updatedPlans);
+    localStorage.setItem("mealPlans", JSON.stringify(updatedPlans));
+
+    };
 
   return (
     <main>
@@ -49,8 +60,6 @@ const MealPlan = () => {
           <li>anything else?</li>
         </ul> */}
 
-        {/* all components for MealPlan page will go here */}
-
         <h1>{plan.name}</h1>
         {/* INCLUDE FUNCTIONALITY TO RENAME PLAN */}
         <h2>Unassigned Meals</h2>
@@ -60,6 +69,9 @@ const MealPlan = () => {
               <div key={meal.idMeal} className={styles.mealCard}>
                 <img src={meal.strMealThumb} alt={meal.strMeal} />
                 <p>{meal.strMeal}</p>
+                <button onClick={() => handleRemoveMeal('unassigned', meal.idMeal)}>
+                    Remove
+                  </button>
               </div>
             ))
           ) : (
@@ -70,14 +82,15 @@ const MealPlan = () => {
         {/* EACH DAY OF THE WEEK DISPLAYED IN A SECTION */}
         {daysOfWeek.map(day => (
           <section key={day}>
-            <h3>{day.charAt(0).toUpperCase() + day.slice(1)}</h3>
+            <h3>{day.charAt(0).toUpperCase() + day.slice(1)}</h3> {/*format days of week */}
             <div className={styles.mealRow}>
               {plan.days[day] && plan.days[day].length > 0 ? (
                 plan.days[day].map(meal => (
                   <div key={meal.idMeal} className={styles.mealCard}>
+                    {console.log("adding ",plan.days[day], meal.idMeal, meal.strMeal, " to UI")}
                     <img src={meal.strMealThumb} alt={meal.strMeal} />
                     <p>{meal.strMeal}</p>
-                    {/* REMOVE BUTTON ON PLAN HOVER */}
+                    {/* REMOVE BUTTON ON recipe hover */}
                     <button onClick={() => handleRemoveMeal(day, meal.idMeal)}>Remove</button>
                   </div>
                 ))

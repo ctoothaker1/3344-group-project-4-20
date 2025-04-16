@@ -85,13 +85,13 @@ const Recipe = () => {
         const updatedMealPlans = mealPlans.map(plan => {
             if (plan.name === selectedMealPlan) {
               if (day === "unassigned") {
-                return { ...plan, unassigned: [...plan.unassigned, recipe.idMeal] };
+                return { ...plan, unassigned: [...plan.unassigned, recipe] };
               } else {
                 return {
                   ...plan,
                   days: {
                     ...plan.days,
-                    [day]: plan.days[day] ? [...plan.days[day], recipe.idMeal] : [recipe.idMeal]
+                    [day]: plan.days[day] ? [...plan.days[day], recipe] : [recipe]
                   }
                 };
               }
