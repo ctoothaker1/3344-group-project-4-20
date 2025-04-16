@@ -65,9 +65,9 @@ const Recipe = () => {
 
     const handleAddToPlanClick = () => {
         setShowPlanForm(true);
-        if (mealPlans.length > 0){
-            setSelectedMealPlan(mealPlans[0].name);
-        }
+        // if (mealPlans.length > 0){
+        //     setSelectedMealPlan(mealPlans[0].name);
+        // }
     }
     // create plan button clicked in recipe toolbar. only shows when 0 plans
     const handleCreatePlanClick = () => {
