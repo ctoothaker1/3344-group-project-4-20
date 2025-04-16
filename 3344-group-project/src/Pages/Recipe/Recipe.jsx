@@ -1,25 +1,25 @@
 // this file contains the structure for the components that will display 
 // when a meal is clicked - this is the detailed recipe page.
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState, useContext} from 'react';
 import {useParams} from 'react-router-dom'; // this is used to get the idMeal from the URL
 import styles from './Recipe.module.css';
 import RecipeToolbar from '../../components/RecipeToolbar/RecipeToolbar';
+import { MealPlansContext } from "../../components/mealPlansContext/mealPlansContext.jsx";
 
 const Recipe = () => {
     const {idMeal} = useParams();
     const [recipe, setRecipe] = useState(null)
     const [isFavorite, setFavorite] = useState(false);
     const [favoritesList, setFavoritesList] = useState([]);
-    const [mealPlan, setMealPlan] = useState([]);
+    const { mealPlans, setMealPlans } = useContext(MealPlansContext); // get locally stored meal plans
 
-    // console.log("idmeal: ",idMeal);
+    const [selectedMealPlan, setSelectedMealPlan] = useState([]);
+
     const fetchRecipeDetails = async () => {
         try {
-            // console.log("idmeal: ",idMeal);
             const response = await fetch(`http://localhost:5001/api/recipe/${idMeal}`);
             const data = await response.json();
             setRecipe(data.meals[0]); // only one result based on id, take first element in json
-            // console.log(data.meals);
         }
         catch (error) {
             console.error("error fetching recipe details", error);
@@ -32,34 +32,38 @@ const Recipe = () => {
 
     if (!recipe) return <p>Loading...</p>; /* if recipe has not been retrieved from api, display loading... */
 
-    // function to toggle favorite from standalone recipe page.
-
+    // function to toggle favorite from standalone recipe page. CSS TODO
     const toggleFavorite = () => {
         if (!isFavorite) {
-            setFavoritesList(existingList => [...existingList, recipe]);
+            setFavoritesList(currentFavorites => [...currentFavorites, recipe]);
         } else {
-            setFavoritesList(existingList => existingList.filter(item => item.name !== recipe.name));
+            setFavoritesList(currentFavorites => currentFavorites.filter(item => item.name !== recipe.name));
         }
         setFavorite(existingList => !existingList);
+        console.log('add to favorites btn clicked');
     };
 
+    const addRecipeToMealPlan = () => {
+        console.log(recipe, "should be added to ", selectedMealPlan)
+    }
 
-    // function to add a recipe to a meal pan
-    const addToMealPlan = () => {
-       // get selected plan name from dropdown, 
-       // select day here?
+    // dropdown selection changed vvvvv
+    const handleMealPlanSelect = (event) => {
+        setSelectedMealPlan(Number(event.target.value));
       };
-
-
 
 
 
     return (
     <main className={styles.mainContent}>
-        <RecipeToolbar recipe={recipe} 
+        <RecipeToolbar /* pass all necessary properties */
+        recipe={recipe} 
         isFavorite={isFavorite}
         onAddToFavorites={toggleFavorite}
-        onAddToMealPlan={addToMealPlan}
+        onAddToMealPlan={addRecipeToMealPlan}
+        mealPlans={mealPlans}
+        selectedMealPlanId={selectedMealPlan}
+        onMealPlanSelect={handleMealPlanSelect}
         /> 
         <div className={styles.recipeContainer}>
             <div className={styles.leftContainer}>
