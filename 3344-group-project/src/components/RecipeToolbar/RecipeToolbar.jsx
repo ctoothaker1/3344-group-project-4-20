@@ -15,7 +15,6 @@ const RecipeToolbar = ({
     console.log("meal plans (toolbar): ", mealPlans)
 
     const dayAssignments = [
-      "unassigned",
       "monday",
       "tuesday",
       "wednesday",
@@ -24,7 +23,6 @@ const RecipeToolbar = ({
       "saturday",
       "sunday"
     ];
-
 
     return (
       <div className={styles.toolbar}>

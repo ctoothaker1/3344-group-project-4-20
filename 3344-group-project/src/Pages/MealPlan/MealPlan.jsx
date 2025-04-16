@@ -27,10 +27,7 @@ const MealPlan = () => {
       days: {
         ...plan.days,
         [day]: plan.days[day].filter(meal => meal.idMeal !== idMeal)
-      },
-      unassigned: day === "unassigned"
-        ? plan.unassigned.filter(meal => meal.idMeal !== idMeal)
-        : plan.unassigned
+      }
     };
 
     const updatedPlans = mealPlans.map(p =>
@@ -62,22 +59,6 @@ const MealPlan = () => {
 
         <h1>{plan.name}</h1>
         {/* INCLUDE FUNCTIONALITY TO RENAME PLAN */}
-        <h2>Unassigned Meals</h2>
-        <div className={styles.mealRow}>
-          {plan.unassigned && plan.unassigned.length > 0 ? (
-            plan.unassigned.map(meal => (
-              <div key={meal.idMeal} className={styles.mealCard}>
-                <img src={meal.strMealThumb} alt={meal.strMeal} />
-                <p>{meal.strMeal}</p>
-                <button onClick={() => handleRemoveMeal('unassigned', meal.idMeal)}>
-                    Remove
-                  </button>
-              </div>
-            ))
-          ) : (
-            <p>No unassigned meals</p>
-          )}
-        </div>
         <hr />
         {/* EACH DAY OF THE WEEK DISPLAYED IN A SECTION */}
         {daysOfWeek.map(day => (

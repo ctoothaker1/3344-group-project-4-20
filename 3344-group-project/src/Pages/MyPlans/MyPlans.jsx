@@ -48,8 +48,7 @@ const MyPlans = () => {
         friday: [],
         saturday: [],
         sunday: []
-      },
-      unassigned: []
+      }
   };
   setMealPlans([...mealPlans, newPlan]); // add this NEW PLAN to existing plans
   console.log(newPlan);
