@@ -59,7 +59,9 @@ const Search = () => {
   }
 
   useEffect(() => {
-    fetchSearchResults(query);
+    if (query !== undefined){ // only call api when there is a query
+      fetchSearchResults(query);
+    }
   },[query]); 
 
   useEffect(()=>{

@@ -14,6 +14,8 @@
 }
 
 .searchResultsContainer {
+    display: flex;
+    justify-content: center;
     width: 100%;
     padding: 0 10px;
 }
@@ -112,15 +114,37 @@
     pointer-events: auto;
 }
 
-@media screen and (max-width: 480px){
+/* @media screen and (max-width: 480px){
     .resultImage {
         max-width: 100%;
         height: 160px;
     }
-}
+} */
 
-@media screen and (min-width: 481px) and (max-width: 768px){
+@media screen and (max-width: 768px){
+    .searchResultsContainer{
+        justify-content: center;
+        align-items: center;
+    }
+    .resultsList{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .favoriteButton{ /* Make favorite button always show when user is on phone/tablet*/
+        transition: none;
+        opacity: 1 ;
+        pointer-events: auto ;
+        transform: translateY(0) ;
+        transition: none ;
+    }
+    .resultItem{
+        width: 75%;
+        height: 300px;
+    }
     .resultImage{
-        max-width: 170px;
+        max-height: 220px;
     }
 }
