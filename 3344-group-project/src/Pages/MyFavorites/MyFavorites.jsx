@@ -20,6 +20,7 @@ const MyFavorites = () => {
   }
   
   return (
+    <main>
     <div className={styles.container}>
       <h2 className={styles.pageTitle}>My Favorites</h2>
       <hr className={styles.divider} />
@@ -49,6 +50,7 @@ const MyFavorites = () => {
         </div>
       )}
     </div>
+    </main>
   );
 };
 
