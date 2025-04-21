@@ -8,7 +8,15 @@ const app = express(); // create a new express application
 const baseUrl = "https://www.themealdb.com/api/json/v1/"; 
 const apiKey = process.env.API_KEY;
 
-app.use(cors());
+app.use(cors(
+    {
+     origin: ["http://localhost:5173", "http://localhost:5001", "https://three344-group-project-4-20-clone-backend.onrender.com", "https://three344-group-project-4-20-clone-frontend.onrender.com"],
+     methods: ["GET", "POST"],
+     allowedHeaders: ["Content-Type", "Authorization"],
+     credentials: true,   
+    }
+
+));
 // this app.get is for searching the meals DB with a query
 app.get('/api/recipes', async(request, response) => {
     const {query} = request.query; 
