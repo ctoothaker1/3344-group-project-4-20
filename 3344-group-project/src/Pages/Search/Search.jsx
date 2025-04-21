@@ -17,7 +17,7 @@ const Search = () => {
   const [filteredResults,setFilteredResults]=useState([])
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false); //loading state=false by default
-  const hostedUrl = process.env.VITE_PROXY_URL;
+  const hostedUrl = import.meta.env.VITE_PROXY_URL;
   console.log(hostedUrl);
 
   const handleFilter=(filters)=>

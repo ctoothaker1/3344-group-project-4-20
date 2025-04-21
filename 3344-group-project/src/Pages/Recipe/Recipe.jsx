@@ -8,6 +8,8 @@ import { MealPlansContext } from "../../components/mealPlansContext/mealPlansCon
 import { FavoritesContext } from '../../components/useContext/useContext.jsx';
 
 const Recipe = () => {
+    const hostedUrl = import.meta.env.VITE_PROXY_URL;
+    console.log(hostedUrl);
     const {idMeal} = useParams();
     const navigate = useNavigate();
     const [recipe, setRecipe] = useState(null)
@@ -24,7 +26,7 @@ const Recipe = () => {
 
     const fetchRecipeDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:5001/api/recipe/${idMeal}`);
+            const response = await fetch(`${hostedUrl}/api/recipe/${idMeal}`);
             const data = await response.json();
             setRecipe(data.meals[0]); // only one result based on id, take first element in json
             console.log("data.meals 0: ",data.meals[0]);
